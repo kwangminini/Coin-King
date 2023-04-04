@@ -7,7 +7,7 @@ export default function Navigation() {
       <span className="text-xl font-bold text-main-font-color whitespace-nowrap">
         코인왕
       </span>
-      <Menu activeMenu="priceInfo" />
+      <Menu />
       <Image src={'/sun.svg'} alt={'sun'} width={24} height={24} priority />
     </nav>
   )

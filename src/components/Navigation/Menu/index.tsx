@@ -1,27 +1,32 @@
-interface IProp {
-  activeMenu: string
-}
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-interface IMenu {
-  [key: string]: string
-}
-export default function Menu({ activeMenu }: IProp) {
-  const menu: IMenu = {
-    priceInfo: '시세 정보',
-    investment: '모의투자',
-  }
+export default function Menu() {
+  const pathName = usePathname()
+
+  const menu = [
+    {
+      href: '/',
+      title: '시세 정보',
+    },
+    {
+      href: '/investment',
+      title: '모의투자',
+    },
+  ]
+
   return (
     <div className="flex w-full h-full justify-center">
-      {Object.keys(menu).map((item) => (
-        <div
-          className="w-[105px] flex items-center justify-center relative"
-          key={item}
-        >
-          {menu[item]}
-          {item === activeMenu && (
-            <div className="w-full h-[5px] bg-[#666] absolute bottom-0" />
-          )}
-        </div>
+      {menu.map(({ href, title }) => (
+        <Link key={href} href={href} className="h-full">
+          <div className="w-[105px] flex items-center justify-center relative h-full">
+            {title}
+            {href === pathName && (
+              <div className="w-full h-[5px] bg-[#666] absolute bottom-0" />
+            )}
+          </div>
+        </Link>
       ))}
     </div>
   )
