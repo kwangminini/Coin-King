@@ -1,5 +1,5 @@
 import Card from '@/components/Card'
-import { coins, ICoins } from '@/constants/coins'
+import { coinInfo, ICoinInfo } from '@/constants/coins'
 
 export default function Home() {
   return (
@@ -8,8 +8,8 @@ export default function Home() {
         실시간 시세 정보
       </p>
       <div className="flex flex-col items-center mt-[45px] gap-9">
-        {coins &&
-          coins.map(({ icon, name, unit, id }: ICoins) => (
+        {coinInfo &&
+          coinInfo.map(({ icon, name, unit, id }: ICoinInfo) => (
             <Card icon={icon} name={name} unit={unit} key={name} id={id} />
           ))}
       </div>
