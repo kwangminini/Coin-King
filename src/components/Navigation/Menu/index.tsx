@@ -11,7 +11,7 @@ export default function Menu() {
       title: '시세 정보',
     },
     {
-      href: '/investment',
+      href: '/investing',
       title: '모의투자',
     },
   ]
