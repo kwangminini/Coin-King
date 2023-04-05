@@ -2,10 +2,15 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+interface IMenu {
+  href: string
+  title: string
+  searchParam?: string
+}
 export default function Menu() {
   const pathName = usePathname()
 
-  const menu = [
+  const menu: IMenu[] = [
     {
       href: '/',
       title: '시세 정보',
@@ -13,13 +18,18 @@ export default function Menu() {
     {
       href: '/investing',
       title: '모의투자',
+      searchParam: 'coin=btc',
     },
   ]
 
   return (
     <div className="flex w-full h-full justify-center">
-      {menu.map(({ href, title }) => (
-        <Link key={href} href={href} className="h-full">
+      {menu.map(({ href, title, searchParam }: IMenu) => (
+        <Link
+          key={href}
+          href={searchParam ? `${href}?${searchParam}` : href}
+          className="h-full"
+        >
           <div className="w-[105px] flex items-center justify-center relative h-full">
             {title}
             {href === pathName && (
