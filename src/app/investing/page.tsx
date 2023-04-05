@@ -1,10 +1,10 @@
-import SideCoinList from '@/components/SideCoinList'
+import CoinHeader from '@/components/CoinHeader'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function Investing() {
   return (
-    <div className="flex h-full">
-      <SideCoinList />
-      <div className="w-full">차트</div>
-    </div>
+    <section className="flex h-full px-[20px]">
+      <CoinHeader />
+    </section>
   )
 }
