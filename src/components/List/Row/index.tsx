@@ -1,10 +1,16 @@
+'use client'
 interface IProp {
   children: React.ReactNode
   style?: string
+  onClick?: () => void
 }
 
-export default function Row({ children, style }: IProp) {
-  return <li className={getRowStyle(style)}>{children}</li>
+export default function Row({ children, style, onClick }: IProp) {
+  return (
+    <li className={getRowStyle(style)} onClick={onClick}>
+      {children}
+    </li>
+  )
 }
 
 function getRowStyle(style?: string): string {
