@@ -9,8 +9,8 @@ export default function Home() {
       </p>
       <div className="flex flex-col items-center mt-[45px] gap-9">
         {coins &&
-          coins.map(({ icon, name, unit }: ICoins) => (
-            <Card icon={icon} name={name} unit={unit} key={name} />
+          coins.map(({ icon, name, unit, id }: ICoins) => (
+            <Card icon={icon} name={name} unit={unit} key={name} id={id} />
           ))}
       </div>
     </div>
