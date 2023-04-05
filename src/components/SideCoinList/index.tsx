@@ -1,7 +1,4 @@
-import List from '@/components/List'
-import Cell from '@/components/List/Cell'
-import Row from '@/components/List/Row'
-import { coins } from '@/constants/coins'
+import CoinList from '@/components/SideCoinList/CoinList'
 
 export default function SideCoinList() {
   return (
@@ -17,32 +14,7 @@ export default function SideCoinList() {
           전일대비
         </p>
       </header>
-      <List>
-        {coins &&
-          coins.map(({ name, unit }: { name: string; unit: string }) => (
-            <Row
-              style="h-[50px] border-b border-main-border-color px-[25px]"
-              key={name}
-            >
-              <Cell>
-                <div className="flex flex-col">
-                  <p className="font-semibold text-[13px] text-main-font-color">
-                    {name}
-                  </p>
-                  <p className="text-[11px] text-gray-400">{unit}</p>
-                </div>
-              </Cell>
-              <Cell
-                data="37,000,000"
-                style="max-w-[106px] px-[19px] justify-end text-xs text-increase-color"
-              />
-              <Cell
-                data="+2.58%"
-                style="max-w-[59px] justify-end text-xs text-increase-color"
-              />
-            </Row>
-          ))}
-      </List>
+      <CoinList />
     </section>
   )
 }
