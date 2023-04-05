@@ -1,5 +1,3 @@
-import { CSSProperties } from 'react'
-
 interface IProp {
   children: React.ReactNode
   style?: string

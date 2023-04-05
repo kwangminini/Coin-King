@@ -1,5 +1,3 @@
-import { CSSProperties } from 'react'
-
 interface IProp {
   children?: React.ReactNode //데이터가 하나의 문자열이 아닐 경우
   data?: string //데이터가 하나의 문자일경우
