@@ -23,7 +23,6 @@ export default function useWebsocket() {
           {
             type: 'ticker',
             codes: ['KRW-BTC', 'KRW-ETH', 'KRW-XRP'],
-            isOnlyRealtime: true,
           },
           { format: 'SIMPLE' },
         ]
