@@ -1,17 +1,12 @@
 'use client'
-import {
-  btcInfoState,
-  ethInfoState,
-  ICoinState,
-  xrpInfoState,
-} from '@/atoms/coinsAtom'
+import { btcState, ethState, ICoinState, xrpState } from '@/atoms/coinsAtom'
 import { IUpbitCoin } from '@/model/upbitCoin'
 import { useRecoilState, SetterOrUpdater } from 'recoil'
 
 export default function useSetCoinData() {
-  const [btcInfo, setBtcInfo] = useRecoilState<ICoinState>(btcInfoState)
-  const [ethInfo, setEthInfo] = useRecoilState<ICoinState>(ethInfoState)
-  const [xrpInfo, setXrpInfo] = useRecoilState<ICoinState>(xrpInfoState)
+  const [btcInfo, setBtcInfo] = useRecoilState<ICoinState>(btcState)
+  const [ethInfo, setEthInfo] = useRecoilState<ICoinState>(ethState)
+  const [xrpInfo, setXrpInfo] = useRecoilState<ICoinState>(xrpState)
 
   /**
    * 필요한 데이터만 formatting 하는 func

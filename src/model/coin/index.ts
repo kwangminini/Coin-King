@@ -5,7 +5,7 @@ export interface ICoin {
   unit: string
 }
 
-export const coinInfo: ICoin[] = [
+export const coinList: ICoin[] = [
   {
     id: 'btc',
     icon: '/btc.svg',

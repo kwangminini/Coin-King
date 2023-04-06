@@ -19,17 +19,17 @@ const atomKey = {
   xrp: 'xrp' + suffix,
 }
 
-export const btcInfoState = atom<ICoinState>({
+export const btcState = atom<ICoinState>({
   key: atomKey.btc,
   default: defaultState,
 })
 
-export const ethInfoState = atom<ICoinState>({
+export const ethState = atom<ICoinState>({
   key: atomKey.eth,
   default: defaultState,
 })
 
-export const xrpInfoState = atom<ICoinState>({
+export const xrpState = atom<ICoinState>({
   key: atomKey.xrp,
   default: defaultState,
 })
