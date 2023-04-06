@@ -1,11 +1,11 @@
-export interface ICoinInfo {
+export interface ICoin {
   id: string
   icon: string
   name: string
   unit: string
 }
 
-export const coinInfo: ICoinInfo[] = [
+export const coinInfo: ICoin[] = [
   {
     id: 'btc',
     icon: '/btc.svg',

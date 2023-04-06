@@ -3,7 +3,7 @@
 import List from '@/components/common/List'
 import Cell from '@/components/common/List/Cell'
 import Row from '@/components/common/List/Row'
-import { coinInfo, ICoinInfo } from '@/constants/coins'
+import { coinInfo, ICoin } from '@/model/coin'
 import { useRouter } from 'next/navigation'
 
 export default function CoinList() {
@@ -11,7 +11,7 @@ export default function CoinList() {
   return (
     <List>
       {coinInfo &&
-        coinInfo.map(({ name, unit, id }: ICoinInfo) => (
+        coinInfo.map(({ name, unit, id }: ICoin) => (
           <Row
             style="h-[50px] border-b border-main-border-color px-[25px] cursor-pointer"
             key={name}

@@ -1,4 +1,4 @@
-export interface IUpbitCoinIfo {
+export interface IUpbitCoin {
   ty: 'ticker' | 'trade' | 'orderbook' //타입
   cd: string //마켓 코드 (ex. KRW-BTC)
   op: number //시가

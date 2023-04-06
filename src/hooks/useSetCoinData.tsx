@@ -5,7 +5,7 @@ import {
   ICoinState,
   xrpInfoState,
 } from '@/atoms/coinsAtom'
-import { IUpbitCoinIfo } from '@/model/coinInfo'
+import { IUpbitCoin } from '@/model/upbitCoin'
 import { useRecoilState, SetterOrUpdater } from 'recoil'
 
 export default function useSetCoinData() {
@@ -18,7 +18,7 @@ export default function useSetCoinData() {
    * @param data websocket으로 받은 upbit data
    * @returns ICoinState
    */
-  const handleDataFormat = (data: IUpbitCoinIfo): ICoinState => {
+  const handleDataFormat = (data: IUpbitCoin): ICoinState => {
     return {
       c: data.c,
       scr: Number((data.scr * 100).toFixed(2)),
@@ -32,7 +32,7 @@ export default function useSetCoinData() {
    * @param func recoil coin update func
    */
   const handleSetData = (
-    data: IUpbitCoinIfo,
+    data: IUpbitCoin,
     coinState: ICoinState,
     func: SetterOrUpdater<ICoinState>
   ): void => {
@@ -44,7 +44,7 @@ export default function useSetCoinData() {
    * recoil update 로직을 담당하는 func
    * @param data websocket으로 받은 upbit data
    */
-  const setCoinData = (data: IUpbitCoinIfo) => {
+  const setCoinData = (data: IUpbitCoin) => {
     switch (data.cd) {
       case 'KRW-BTC':
         handleSetData(data, btcInfo, setBtcInfo)

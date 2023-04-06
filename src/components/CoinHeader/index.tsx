@@ -1,13 +1,13 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { coinInfo, ICoinInfo } from '@/constants/coins'
+import { coinInfo, ICoin } from '@/model/coin'
 import { useEffect, useState } from 'react'
 export default function CoinHeader() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const coinId = searchParams.get('coin')
-  const [curCoinInfo, setCurCoinInfo] = useState<ICoinInfo | null>(null)
+  const [curCoinInfo, setCurCoinInfo] = useState<ICoin | null>(null)
 
   useEffect(() => {
     if (coinId) {

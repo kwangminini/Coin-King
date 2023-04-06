@@ -1,13 +1,13 @@
 'use client'
 
 import useSetCoinData from '@/hooks/useSetCoinData'
-import { IUpbitCoinIfo } from '@/model/coinInfo'
+import { IUpbitCoin } from '@/model/upbitCoin'
 import { useEffect, useRef, useState } from 'react'
 
 export default function useWebsocket() {
   const URL = 'wss://api.upbit.com/websocket/v1'
   const socket = useRef<WebSocket | null>(null)
-  const [socketData, setSocketData] = useState<IUpbitCoinIfo[]>([])
+  const [socketData, setSocketData] = useState<IUpbitCoin[]>([])
   const [isConnected, setIsConnected] = useState(false)
   const { setCoinData } = useSetCoinData()
 
@@ -43,7 +43,7 @@ export default function useWebsocket() {
     }
   }, [])
 
-  // const handleChangeSocketData = (data: IUpbitCoinIfo) => {
+  // const handleChangeSocketData = (data: IUpbitCoin) => {
   //   if (socketData?.length > 0) {
   //     const
   //   } else {
