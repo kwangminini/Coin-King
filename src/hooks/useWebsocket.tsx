@@ -32,15 +32,15 @@ export default function useWebsocket() {
     }
 
     socket.current.onmessage = async (event: MessageEvent) => {
-      const text = await event.data.text()
-      console.log('text ### ', JSON.parse(text))
-      setCoinData(JSON.parse(text))
-      setSocketData(text)
+      const coinData = await event.data.text()
+      setCoinData(JSON.parse(coinData))
+      setSocketData(coinData)
     }
     socket.current.onclose = () => {
       setIsConnected(false)
       console.log('연결 종료 !!!')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // const handleChangeSocketData = (data: IUpbitCoin) => {
