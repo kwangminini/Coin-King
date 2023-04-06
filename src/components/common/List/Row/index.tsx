@@ -7,13 +7,8 @@ interface IProp {
 
 export default function Row({ children, style, onClick }: IProp) {
   return (
-    <li className={getRowStyle(style)} onClick={onClick}>
+    <li className={`w-full flex ${style ? style : ''}`} onClick={onClick}>
       {children}
     </li>
   )
-}
-
-function getRowStyle(style?: string): string {
-  const defaultColor = 'w-full flex'
-  return style ? `${defaultColor} ${style}` : defaultColor
 }

@@ -1,8 +1,8 @@
 'use client'
 
-import List from '@/components/List'
-import Cell from '@/components/List/Cell'
-import Row from '@/components/List/Row'
+import List from '@/components/common/List'
+import Cell from '@/components/common/List/Cell'
+import Row from '@/components/common/List/Row'
 import { coinInfo, ICoinInfo } from '@/constants/coins'
 import { useRouter } from 'next/navigation'
 
