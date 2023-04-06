@@ -1,7 +1,7 @@
 import Navigation from '@/components/Navigation'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Recoil from '@/components/Recoil'
+import RecoilContext from '@/context/RecoilContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className="w-full">
         <Navigation />
         <main className="h-[calc(100vh-60px)] w-full">
-          <Recoil>{children}</Recoil>
+          <RecoilContext>{children}</RecoilContext>
         </main>
       </body>
     </html>
