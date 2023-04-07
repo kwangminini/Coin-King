@@ -31,7 +31,7 @@ export default function useSetCoinData() {
     coinState: ICoinState,
     func: SetterOrUpdater<ICoinState>
   ): void => {
-    if (data.tp !== coinState.tp) {
+    if (data.tp && data.tp !== coinState.tp) {
       func(handleDataFormat(data))
     }
   }

@@ -13,7 +13,7 @@ export default function CoinList() {
       {coinList &&
         coinList.map(({ name, unit, id }: ICoin) => (
           <Row
-            style="h-[50px] border-b border-main-border-color px-[25px] cursor-pointer"
+            style="h-50 border-b border-main-border-color px-[25px] cursor-pointer"
             key={name}
             onClick={() => router.push(`/investing?coin=${id}`)}
           >

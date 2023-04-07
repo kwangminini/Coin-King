@@ -19,7 +19,7 @@ export default function CoinHeader() {
     }
   }, [coinId, router])
   return (
-    <header className="flex h-[50px] items-center">
+    <header className="flex h-50 items-center">
       <strong className="text-[20px] font-bold text-main-font-color">
         {curCoin?.name}
       </strong>

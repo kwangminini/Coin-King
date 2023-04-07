@@ -33,7 +33,7 @@ export default function Menu() {
           <div className="w-[105px] flex items-center justify-center relative h-full">
             {title}
             {href === pathName && (
-              <div className="w-full h-[5px] bg-[#666] absolute bottom-0" />
+              <div className="w-full h-5 bg-[#666] absolute bottom-0" />
             )}
           </div>
         </Link>
