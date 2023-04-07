@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       spacing: px0_500,
       maxWidth: px0_1280,
+      minWidth: px0_500,
+      minHeight: px0_500,
       colors: {
         'main-font-color': '#333333',
         'sub-font-color': '#666666',
