@@ -3,7 +3,6 @@
 import { ICoinState } from '@/atoms/coinsAtom'
 import useGetCoinState from '@/hooks/useGetCoinState'
 import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
 
 interface IProp {
   coinId: string
