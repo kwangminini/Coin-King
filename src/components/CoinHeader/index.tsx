@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { coinList, ICoin } from '@/model/coin'
 import { useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
+
 export default function CoinHeader() {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -21,9 +23,11 @@ export default function CoinHeader() {
   return (
     <header className="flex h-50 items-center">
       <strong className="text-[20px] font-bold text-main-font-color">
-        {curCoin?.name}
+        {curCoin?.name ? curCoin?.name : <Skeleton width={70} count={1} />}
       </strong>
-      <p className="pl-2 text-sub-font-color text-xs">{curCoin?.unit}</p>
+      <p className="pl-2 text-sub-font-color text-xs">
+        {curCoin?.unit ? curCoin?.unit : <Skeleton width={50} count={1} />}
+      </p>
     </header>
   )
 }
