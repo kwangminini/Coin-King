@@ -3,6 +3,7 @@ const px0_500 = { ...Array.from(Array(501)).map((_, i) => `${i}px`) }
 const px0_1280 = { ...Array.from(Array(1281)).map((_, i) => `${i}px`) }
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       spacing: px0_500,
