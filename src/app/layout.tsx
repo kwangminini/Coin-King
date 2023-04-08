@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation'
 import './globals.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { Inter } from 'next/font/google'
 import RecoilContext from '@/context/RecoilContext'
 import WebsocketContext from '@/context/WebsocketContext'
