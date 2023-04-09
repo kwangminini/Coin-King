@@ -8,17 +8,17 @@ export interface ICoinState {
 
 const suffix = 'InfoState'
 
-const defaultState = {
-  tp: undefined,
-  c: undefined,
-  scr: undefined,
-}
 const atomKey = {
   btc: 'btc' + suffix,
   eth: 'eth' + suffix,
   xrp: 'xrp' + suffix,
 }
 
+export const defaultState = {
+  tp: undefined,
+  c: undefined,
+  scr: undefined,
+}
 export const btcState = atom<ICoinState>({
   key: atomKey.btc,
   default: defaultState,
