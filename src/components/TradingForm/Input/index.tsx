@@ -2,7 +2,6 @@
 import { NumericFormat } from 'react-number-format'
 import { Controller, Control } from 'react-hook-form'
 import { IFormInputData } from '@/components/TradingForm'
-import { forwardRef, Fragment } from 'react'
 
 interface IProp {
   name: 'price' | 'count' | 'totalPrice'

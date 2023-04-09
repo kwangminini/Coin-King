@@ -11,20 +11,20 @@ export default function TabBar({ activeMenu, handleActiveMenu, menu }: IProp) {
   return (
     <header className="h-45">
       <ul className="flex h-full">
-        {menu.map((_menu: IMenu) => (
+        {menu.map((menuItem: IMenu) => (
           <li
-            key={_menu.key}
+            key={menuItem.key}
             className="flex items-center font-bold justify-center relative cursor-pointer flex-1 max-w-120 border-b border-main-border-color"
-            onClick={() => handleActiveMenu(_menu)}
+            onClick={() => handleActiveMenu(menuItem)}
             style={{
-              color: _menu === activeMenu ? _menu.activeColor : undefined,
+              color: menuItem === activeMenu ? menuItem.activeColor : undefined,
             }}
           >
-            {_menu.value}
-            {_menu === activeMenu && (
+            {menuItem.value}
+            {menuItem === activeMenu && (
               <div
                 className="h-3 w-full absolute bottom-0 left-0"
-                style={{ backgroundColor: _menu.activeColor }}
+                style={{ backgroundColor: menuItem.activeColor }}
               />
             )}
           </li>
