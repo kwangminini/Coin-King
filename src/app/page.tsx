@@ -1,4 +1,4 @@
-import Card from '@/components/Card'
+import CoinCard from '@/components/CoinCard'
 import { coinList, ICoin } from '@/model/coin'
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       <div className="flex flex-col items-center mt-45 gap-36">
         {coinList &&
           coinList.map(({ icon, name, unit, id }: ICoin) => (
-            <Card icon={icon} name={name} unit={unit} key={name} id={id} />
+            <CoinCard icon={icon} name={name} unit={unit} key={name} id={id} />
           ))}
       </div>
     </div>
