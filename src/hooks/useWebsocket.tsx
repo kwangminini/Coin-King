@@ -42,13 +42,5 @@ export default function useWebsocket() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // const handleChangeSocketData = (data: IUpbitCoin) => {
-  //   if (socketData?.length > 0) {
-  //     const
-  //   } else {
-  //     setSocketData([data])
-  //   }
-  // }
-
   return { socket, isConnected, socketData }
 }
