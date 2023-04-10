@@ -18,13 +18,13 @@ export default function CoinList() {
           const coinState = getCoinState(id)
           return (
             <List.Row
-              style="h-50 border-b border-main-border-color px-[25px] cursor-pointer"
+              style="h-50 border-b border-main-border-color px-25 cursor-pointer"
               key={name}
               onClick={() => router.push(`/investing?coin=${id}`)}
             >
               <List.Cell>
                 <div className="flex flex-col">
-                  <p className="font-semibold text-[13px] text-main-font-color">
+                  <p className="font-semibold text-13 text-main-font-color">
                     {name}
                   </p>
                   <p className="text-[11px] text-gray-400">{unit}</p>
