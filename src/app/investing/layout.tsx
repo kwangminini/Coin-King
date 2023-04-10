@@ -1,9 +1,9 @@
 import SideCoinList from '@/components/SideCoinList'
 
-interface IProp {
+interface IProps {
   children: React.ReactNode
 }
-export default function InvestingLayout({ children }: IProp) {
+export default function InvestingLayout({ children }: IProps) {
   return (
     <div className="flex h-full">
       <SideCoinList />

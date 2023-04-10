@@ -1,12 +1,12 @@
 import Cell from '@/components/common/List/Cell'
 import Row from '@/components/common/List/Row'
 
-interface IProp {
+interface IProps {
   children: React.ReactNode
   style?: string
 }
 
-export default function List({ children, style }: IProp) {
+export default function List({ children, style }: IProps) {
   return <ul className={`w-full ${style ? style : ''}`}>{children}</ul>
 }
 
