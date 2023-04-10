@@ -4,6 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { Inter } from 'next/font/google'
 import RecoilContext from '@/context/RecoilContext'
 import WebsocketContext from '@/context/WebsocketContext'
+import AuthContext from '@/context/AuthContext/indext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -19,12 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className="w-full">
-        <Navigation />
-        <main className="h-[calc(100vh-60px)] w-full">
-          <RecoilContext>
-            <WebsocketContext>{children}</WebsocketContext>
-          </RecoilContext>
-        </main>
+        <AuthContext>
+          <Navigation />
+          <main className="h-[calc(100vh-60px)] w-full">
+            <RecoilContext>
+              <WebsocketContext>{children}</WebsocketContext>
+            </RecoilContext>
+          </main>
+        </AuthContext>
       </body>
     </html>
   )
