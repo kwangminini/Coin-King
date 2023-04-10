@@ -6,7 +6,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      spacing: px0_500,
+      spacing: px0_1280,
       maxWidth: px0_1280,
       minWidth: px0_500,
       minHeight: px0_500,
