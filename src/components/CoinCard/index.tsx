@@ -1,4 +1,4 @@
-import { ICoin } from '@/model/coin'
+import { ICoin } from '@/constants/coinList'
 import Image from 'next/image'
 import PriceBox from '@/components/CoinCard/PriceBox'
 

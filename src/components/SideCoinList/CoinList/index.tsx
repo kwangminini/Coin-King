@@ -2,7 +2,7 @@
 
 import List from '@/components/common/List'
 import useGetCoinState from '@/hooks/useGetCoinState'
-import { coinList, ICoin } from '@/model/coin'
+import { coinList, ICoin } from '@/constants/coinList'
 import { getSignedChangeRate } from '@/util/getSignedChangeRate'
 import { getTextColor } from '@/util/getTextColor'
 import { useRouter } from 'next/navigation'

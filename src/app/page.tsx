@@ -1,5 +1,5 @@
 import CoinCard from '@/components/CoinCard'
-import { coinList, ICoin } from '@/model/coin'
+import { coinList, ICoin } from '@/constants/coinList'
 
 export default function Home() {
   return (

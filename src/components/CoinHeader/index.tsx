@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { coinList, ICoin } from '@/model/coin'
+import { coinList, ICoin } from '@/constants/coinList'
 import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 
