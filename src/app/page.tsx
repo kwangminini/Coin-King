@@ -9,8 +9,15 @@ export default function Home() {
       </p>
       <div className="flex flex-col items-center mt-45 gap-36">
         {coinList &&
-          coinList.map(({ icon, name, unit, id }: ICoin) => (
-            <CoinCard icon={icon} name={name} unit={unit} key={name} id={id} />
+          coinList.map(({ icon, darkIcon, name, unit, id }: ICoin) => (
+            <CoinCard
+              icon={icon}
+              darkIcon={darkIcon}
+              name={name}
+              unit={unit}
+              key={name}
+              id={id}
+            />
           ))}
       </div>
     </div>

@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="w-full">
+      <body className="w-full dark:bg-black">
         <AuthContext>
           <Navigation />
           <main className="h-[calc(100vh-60px)] w-full">

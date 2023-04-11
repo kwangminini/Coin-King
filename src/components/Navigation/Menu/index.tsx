@@ -30,7 +30,7 @@ export default function Menu() {
           href={searchParam ? `${href}?${searchParam}` : href}
           className="h-full"
         >
-          <div className="w-[105px] flex items-center justify-center relative h-full dark:text-white">
+          <div className="w-105 flex items-center justify-center relative h-full dark:text-white">
             {title}
             {href === pathName && (
               <div className="w-full h-5 bg-[#666] absolute bottom-0 dark:bg-white" />

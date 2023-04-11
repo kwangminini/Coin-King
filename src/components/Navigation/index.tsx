@@ -18,7 +18,7 @@ export default function Navigation() {
     }
   }
   return (
-    <nav className="w-full h-60 flex border-solid border-main-border-color border-b items-center px-40 dark:bg-black">
+    <nav className="w-full h-60 flex border-solid border-main-border-color border-b items-center px-40 dark:border-white">
       <Logo />
       <Menu />
       <button
