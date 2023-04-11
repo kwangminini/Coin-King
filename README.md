@@ -1,6 +1,6 @@
 # 코인 모의 투자 사이트 (코인왕)
 
-### 최초 디자인 
+### ver 1 디자인 
 <div align="center">
 <img width="800" alt="스크린샷 2023-04-12 오전 3 30 39" src="https://user-images.githubusercontent.com/48472989/231256522-94f9bd1c-e85a-432d-bf99-aaff8d6e53e1.png">
 </div>
