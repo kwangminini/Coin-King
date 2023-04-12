@@ -99,7 +99,7 @@ export default function TradingForm() {
               key={key}
             >
               <Radio active={formData.orderOption === key} />
-              <span className="ml-8 text-sm">{value}</span>
+              <span className="ml-8 text-sm dark:text-white">{value}</span>
             </button>
           ))}
         </Row>

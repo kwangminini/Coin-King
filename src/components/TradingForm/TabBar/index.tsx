@@ -14,7 +14,7 @@ export default function TabBar({ activeMenu, handleActiveMenu, menu }: IProps) {
         {menu.map((menuItem: IMenu) => (
           <li
             key={menuItem.key}
-            className="flex items-center font-bold justify-center relative cursor-pointer flex-1 max-w-120 border-b border-main-border-color"
+            className="flex items-center font-bold justify-center relative cursor-pointer flex-1 max-w-120 border-b border-main-border-color dark:text-white"
             onClick={() => handleActiveMenu(menuItem)}
             style={{
               color: menuItem === activeMenu ? menuItem.activeColor : undefined,
