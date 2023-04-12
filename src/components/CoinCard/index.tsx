@@ -22,7 +22,7 @@ export default function CoinCard({ icon, darkIcon, name, unit, id }: ICoin) {
         className="hidden dark:block"
       />
       <div className="ml-6 flex flex-col">
-        <p className="text-base text-main-font-color">{name}</p>
+        <p className="text-base text-main-font-color dark:text-white">{name}</p>
         <p className="text-gray-400 text-sm">{unit}</p>
       </div>
       <PriceBox coinId={id} />

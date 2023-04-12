@@ -22,10 +22,10 @@ export default function CoinHeader() {
   }, [coinId, router])
   return (
     <header className="flex h-50 items-center">
-      <strong className="text-[20px] font-bold text-main-font-color">
+      <strong className="text-20 font-bold text-main-font-color dark:text-white">
         {curCoin?.name ? curCoin?.name : <Skeleton width={70} count={1} />}
       </strong>
-      <p className="pl-2 text-sub-font-color text-xs">
+      <p className="pl-2 text-sub-font-color text-xs dark:text-white">
         {curCoin?.unit ? curCoin?.unit : <Skeleton width={50} count={1} />}
       </p>
     </header>
