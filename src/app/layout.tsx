@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import RecoilContext from '@/context/RecoilContext'
 import WebsocketContext from '@/context/WebsocketContext'
 import AuthContext from '@/context/AuthContext/indext'
+import ThemeContext from '@/context/ThemeContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -19,15 +20,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="w-full dark:bg-black">
-        <AuthContext>
-          <Navigation />
-          <main className="h-[calc(100vh-60px)] w-full">
-            <RecoilContext>
-              <WebsocketContext>{children}</WebsocketContext>
-            </RecoilContext>
-          </main>
-        </AuthContext>
+      <body className="w-full">
+        <ThemeContext>
+          <AuthContext>
+            <Navigation />
+            <main className="h-[calc(100vh-60px)] w-full">
+              <RecoilContext>
+                <WebsocketContext>{children}</WebsocketContext>
+              </RecoilContext>
+            </main>
+          </AuthContext>
+        </ThemeContext>
       </body>
     </html>
   )
