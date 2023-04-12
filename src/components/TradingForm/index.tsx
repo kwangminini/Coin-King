@@ -46,7 +46,7 @@ const defaultValues = {
 
 export default function TradingForm() {
   const searchParams = useSearchParams()
-  const coinId = searchParams.get('coin')
+  const coinId = searchParams?.get('coin')
   const [activeMenu, setActiveMenu] = useState<IMenu>(menu[0])
   const [formData, setFormData] = useState({
     orderOption: 'limit', //주문구분
