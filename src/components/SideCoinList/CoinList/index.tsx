@@ -24,7 +24,7 @@ export default function CoinList() {
             >
               <List.Cell>
                 <div className="flex flex-col">
-                  <p className="font-semibold text-13 text-main-font-color">
+                  <p className="font-semibold text-13 text-main-font-color dark:text-white">
                     {name}
                   </p>
                   <p className="text-[11px] text-gray-400">{unit}</p>
