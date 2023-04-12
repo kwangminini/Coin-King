@@ -8,7 +8,7 @@ import Skeleton from 'react-loading-skeleton'
 export default function CoinHeader() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const coinId = searchParams.get('coin')
+  const coinId = searchParams?.get('coin')
   const [curCoin, setCurCoin] = useState<ICoin | null>(null)
 
   useEffect(() => {
