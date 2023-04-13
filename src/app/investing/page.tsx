@@ -1,12 +1,24 @@
+'use client'
+
 import CoinHeader from '@/components/CoinHeader'
 import TradingChart from '@/components/TradingChart'
 import TradingForm from '@/components/TradingForm'
+import { coinList, ICoin } from '@/constants/coinList'
+import { useSearchParams, useRouter } from 'next/navigation'
 
 export default function Investing() {
+  const searchParams = useSearchParams()
+  const coinId = searchParams?.get('coin')
+  const router = useRouter()
+  const selectedCoin: ICoin = coinList.filter((coin) => coin.id === coinId)[0]
+
+  if (!selectedCoin) {
+    return router.push('/investing?coin=btc')
+  }
   return (
     <section className="flex h-full px-20 flex-col">
-      <CoinHeader />
-      <TradingChart />
+      <CoinHeader selectedCoin={selectedCoin} />
+      <TradingChart selectedCoin={selectedCoin} />
       <TradingForm />
     </section>
   )
