@@ -19,7 +19,6 @@ export default function ThemeButton() {
         alt={'sun'}
         width={24}
         height={24}
-        priority
       />
     </button>
   )
