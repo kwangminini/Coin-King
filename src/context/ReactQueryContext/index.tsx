@@ -6,7 +6,13 @@ interface IProps {
 }
 export default function ReactQueryContext({ children }: IProps) {
   // Create a client
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  })
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
