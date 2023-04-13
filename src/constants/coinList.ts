@@ -4,6 +4,7 @@ export interface ICoin {
   darkIcon: string
   name: string
   unit: string
+  codes?: string
 }
 
 export const coinList: ICoin[] = [
@@ -13,6 +14,7 @@ export const coinList: ICoin[] = [
     darkIcon: '/btc.svg',
     name: '비트코인',
     unit: 'BTC/KRW',
+    codes: 'KRW-BTC',
   },
   {
     id: 'eth',
@@ -20,6 +22,7 @@ export const coinList: ICoin[] = [
     darkIcon: '/eth_dark.svg',
     name: '이더리움',
     unit: 'ETH/KRW',
+    codes: 'KRW-ETH',
   },
   {
     id: 'xrp',
@@ -27,5 +30,6 @@ export const coinList: ICoin[] = [
     darkIcon: '/xrp_dark.svg',
     name: '리플',
     unit: 'XRP/KRW',
+    codes: 'KRW-XRP',
   },
 ]
