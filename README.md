@@ -1,6 +1,6 @@
 # 코인 모의 투자 사이트 (코인왕)
 
-https://coin-king-55lj.vercel.app/
+https://coin-king.vercel.app/
 
 ### ver 1 디자인 
 <div align="center">
