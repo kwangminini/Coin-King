@@ -9,7 +9,8 @@ export default function ReactQueryContext({ children }: IProps) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        refetchOnWindowFocus: false,
+        refetchOnWindowFocus: false, //화면 다른 곳 이동하다가 왔을 때 fetch 방지
+        retry: 0, //실패 시 재호출 방지
       },
     },
   })
