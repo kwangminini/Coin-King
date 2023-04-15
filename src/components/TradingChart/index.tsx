@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetDayCandles } from '@/hooks/queries/upbit'
+import { useGetDayCandles } from '@/queries/upbit'
 import { useEffect, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { createChart } from 'lightweight-charts'

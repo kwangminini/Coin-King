@@ -2,10 +2,11 @@ import { UseQueryResult, useQuery } from 'react-query'
 import { getDayCandles } from '@/api/upbit'
 import { AxiosError } from 'axios'
 import { IDayCandles } from '@/model/upbit/candles'
+
 const prefix = 'upbit/'
 
 //useQuery Key
-export const useQueryKey = {
+const useQueryKey = {
   GET_DAY_CANDLES: prefix + 'getDayCandles',
 }
 
