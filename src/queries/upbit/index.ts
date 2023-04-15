@@ -1,7 +1,7 @@
 import { UseQueryResult, useQuery } from 'react-query'
 import { getDayCandles } from '@/api/upbit'
 import { AxiosError } from 'axios'
-import { IDayCandles } from '@/model/upbit/candles'
+import { IDayCandles } from '@/types/upbit/candles'
 
 const prefix = 'upbit/'
 

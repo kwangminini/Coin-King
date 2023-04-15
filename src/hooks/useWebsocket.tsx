@@ -1,7 +1,7 @@
 'use client'
 
 import useSetCoinData from '@/hooks/useSetCoinData'
-import { IUpbitCoin } from '@/model/upbitCoin'
+import { IUpbitCoin } from '@/types/upbit/coin'
 import { useEffect, useRef, useState } from 'react'
 
 export default function useWebsocket() {

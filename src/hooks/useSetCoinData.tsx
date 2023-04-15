@@ -1,6 +1,6 @@
 'use client'
 import { btcState, ethState, ICoinState, xrpState } from '@/atoms/coinsAtom'
-import { IUpbitCoin } from '@/model/upbitCoin'
+import { IUpbitCoin } from '@/types/upbit/coin'
 import { useRecoilState, SetterOrUpdater } from 'recoil'
 
 export default function useSetCoinData() {
