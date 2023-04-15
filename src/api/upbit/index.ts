@@ -1,4 +1,4 @@
-import { upbitAPI } from '@/services/axiosInstance'
+import { upbitAPI } from '@/api/axiosInstance'
 
 /**
  * 코인 시세 일봉 조회
