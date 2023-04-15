@@ -1,12 +1,12 @@
 import { CSSProperties } from 'react'
 
-interface IProps {
+interface IRowProps {
   label: string
   children: React.ReactNode
   height?: number
 }
 
-export default function Row({ label, children, height }: IProps) {
+export default function Row({ label, children, height }: IRowProps) {
   return (
     <div
       className="flex flex-1 items-center px-16 mt-10 h-38"

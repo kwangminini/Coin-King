@@ -4,11 +4,11 @@ import useGetCoinState from '@/hooks/useGetCoinState'
 import { getTextColor } from '@/utils/coinUtil/getTextColor'
 import Skeleton from 'react-loading-skeleton'
 
-interface IProps {
+interface IPriceBoxProps {
   coinId: string
 }
 
-export default function PriceBox({ coinId }: IProps) {
+export default function PriceBox({ coinId }: IPriceBoxProps) {
   const { coinState } = useGetCoinState(coinId)
 
   return (

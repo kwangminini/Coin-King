@@ -2,10 +2,10 @@
 
 import useWebsocket from '@/hooks/useWebsocket'
 
-interface IProps {
+interface IWebsocketContextProps {
   children: React.ReactNode
 }
-export default function WebsocketContext({ children }: IProps) {
+export default function WebsocketContext({ children }: IWebsocketContextProps) {
   const { socket, isConnected } = useWebsocket()
   if (!isConnected) {
     console.log('연결 끊김')

@@ -2,12 +2,16 @@
 
 import { IMenu } from '@/components/TradingForm'
 
-interface IProps {
+interface ITabBarProps {
   activeMenu: IMenu
   handleActiveMenu: (menu: IMenu) => void
   menu: IMenu[]
 }
-export default function TabBar({ activeMenu, handleActiveMenu, menu }: IProps) {
+export default function TabBar({
+  activeMenu,
+  handleActiveMenu,
+  menu,
+}: ITabBarProps) {
   return (
     <header className="h-45">
       <ul className="flex h-full">

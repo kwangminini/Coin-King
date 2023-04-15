@@ -1,9 +1,9 @@
-interface IProps {
+interface ICellProps {
   children?: React.ReactNode //데이터가 하나의 문자열이 아닐 경우
   style?: string
 }
 
-export default function Cell({ children, style }: IProps) {
+export default function Cell({ children, style }: ICellProps) {
   return (
     <div className={`flex items-center w-full ${style ? style : ''}`}>
       {children}

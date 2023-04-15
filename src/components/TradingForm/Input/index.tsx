@@ -3,14 +3,19 @@ import { NumericFormat } from 'react-number-format'
 import { Controller, Control } from 'react-hook-form'
 import { IFormInputData } from '@/components/TradingForm'
 
-interface IProps {
+interface IInputProps {
   name: 'price' | 'count' | 'totalPrice'
-  control: Control<IFormInputData, any>
+  control: Control<IFormInputData>
   defaultValue: number
   border: boolean
 }
 
-export default function Input({ name, control, defaultValue, border }: IProps) {
+export default function Input({
+  name,
+  control,
+  defaultValue,
+  border,
+}: IInputProps) {
   return (
     <Controller
       name={name}

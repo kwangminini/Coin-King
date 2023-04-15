@@ -1,10 +1,12 @@
 'use client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-interface IProps {
+interface IReactQueryContextProps {
   children: React.ReactNode
 }
-export default function ReactQueryContext({ children }: IProps) {
+export default function ReactQueryContext({
+  children,
+}: IReactQueryContextProps) {
   // Create a client
   const queryClient = new QueryClient({
     defaultOptions: {
