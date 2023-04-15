@@ -1,7 +1,7 @@
 'use client'
 
 import useGetCoinState from '@/hooks/useGetCoinState'
-import { getTextColor } from '@/util/getTextColor'
+import { getTextColor } from '@/utils/coinUtil/getTextColor'
 import Skeleton from 'react-loading-skeleton'
 
 interface IProps {

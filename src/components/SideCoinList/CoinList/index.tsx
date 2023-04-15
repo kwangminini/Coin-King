@@ -3,8 +3,8 @@
 import List from '@/components/common/List'
 import useGetCoinState from '@/hooks/useGetCoinState'
 import { coinList, ICoin } from '@/constants/coinList'
-import { getSignedChangeRate } from '@/util/getSignedChangeRate'
-import { getTextColor } from '@/util/getTextColor'
+import { getSignedChangeRate } from '@/utils/coinUtil/getSignedChangeRate'
+import { getTextColor } from '@/utils/coinUtil/getTextColor'
 import { useRouter } from 'next/navigation'
 import Skeleton from 'react-loading-skeleton'
 

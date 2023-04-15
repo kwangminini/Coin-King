@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { createChart } from 'lightweight-charts'
 import { ICoin } from '@/constants/coinList'
-import { getDayCandlestickData } from '@/util/getCandlestickData'
+import { getDayCandlestickData } from '@/utils/coinUtil/getDayCandlestickData'
 
 export default function TradingChart({
   selectedCoin,
