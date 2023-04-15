@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const px0_100 = { ...Array.from(Array(101)).map((_, i) => `${i}px`) }
 const px0_500 = { ...Array.from(Array(501)).map((_, i) => `${i}px`) }
 const px0_1280 = { ...Array.from(Array(1281)).map((_, i) => `${i}px`) }
 module.exports = {
@@ -10,6 +11,7 @@ module.exports = {
       maxWidth: px0_1280,
       minWidth: px0_500,
       minHeight: px0_500,
+      fontSize: px0_100,
       colors: {
         'main-font-color': '#333333',
         'sub-font-color': '#666666',
