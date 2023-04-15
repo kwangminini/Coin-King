@@ -27,7 +27,7 @@ export default function CoinList() {
                   <p className="font-semibold text-13 text-main-font-color dark:text-white">
                     {name}
                   </p>
-                  <p className="text-[11px] text-gray-400">{unit}</p>
+                  <p className="text-11 text-gray-400">{unit}</p>
                 </div>
               </List.Cell>
               <List.Cell
