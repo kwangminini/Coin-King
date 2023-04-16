@@ -34,7 +34,10 @@ export const coinStateObj = atom<ICoinStateObj>({
   default: {
     btc: defaultState,
     eth: defaultState,
+    etc: defaultState,
+    ada: defaultState,
     xrp: defaultState,
+    doge: defaultState,
   },
 })
 

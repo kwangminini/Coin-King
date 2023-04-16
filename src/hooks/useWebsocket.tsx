@@ -22,7 +22,14 @@ export default function useWebsocket() {
           { ticket: 'test' },
           {
             type: 'ticker',
-            codes: ['KRW-BTC', 'KRW-ETH', 'KRW-XRP'],
+            codes: [
+              'KRW-BTC',
+              'KRW-ETH',
+              'KRW-ETC',
+              'KRW-ADA',
+              'KRW-XRP',
+              'KRW-DOGE',
+            ],
           },
           { format: 'SIMPLE' },
         ]

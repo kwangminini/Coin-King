@@ -11,6 +11,7 @@ import { decreaseColor, increaseColor } from '@/constants/color'
 import useGetCoinState from '@/hooks/useGetCoinState'
 import { formatToYyyyMmDd } from '@/utils/dateUtil/formatToYyyyMmDd'
 import { ICoinState } from '@/atoms/coinsAtom'
+import { useTheme } from 'next-themes'
 
 export default function TradingChart({
   selectedCoin,
@@ -21,26 +22,32 @@ export default function TradingChart({
   const { coinState } = useGetCoinState(selectedCoin.id)
   const chartRef = useRef<HTMLDivElement>(null)
   const candlestickRef = useRef<ISeriesApi<'Candlestick'>>()
+  const { theme } = useTheme()
+
   useEffect(() => {
     if (isSuccess && chartRef.current) {
       initChartElement(chartRef.current)
-      drawChart(chartRef.current, data)
+      drawChart(chartRef.current, data, theme)
+      console.log('theme :::', theme)
     }
-  }, [data, isSuccess])
+  }, [data, isSuccess, theme])
 
   useEffect(() => {
     updateChart()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinState])
 
-  const drawChart = (container: HTMLDivElement, data: IDayCandles[]) => {
-    const chart = createChart(container, { width: 600 })
-    candlestickRef.current = chart.addCandlestickSeries({
-      upColor: increaseColor,
-      downColor: decreaseColor,
-      borderVisible: false,
-    })
+  const drawChart = (
+    container: HTMLDivElement,
+    data: IDayCandles[],
+    theme?: string
+  ) => {
+    const chart = createChart(container, chartOption)
+    candlestickRef.current = chart.addCandlestickSeries(candlestickOption)
     candlestickRef.current.setData(getDayCandlestickData(data))
+    window.addEventListener('resize', () => {
+      chart.resize(container.clientWidth, container.clientHeight)
+    })
   }
 
   const initChartElement = (chartElement: HTMLElement) => {
@@ -73,6 +80,34 @@ export default function TradingChart({
       close: coinState.tp,
     }
   }
+
+  const getThemeColor = (theme?: string, customColor?: string) => {
+    if (customColor) {
+      return theme === 'dark' ? customColor : undefined
+    }
+    return theme === 'dark' ? 'black' : 'white'
+  }
+
+  const chartOption = {
+    width: 1000,
+    layout: {
+      background: { color: getThemeColor(theme) },
+      textColor: getThemeColor(theme, '#DDD'),
+    },
+    grid: {
+      vertLines: { color: getThemeColor(theme, '#444') },
+      horzLines: { color: getThemeColor(theme, '#444') },
+    },
+  }
+
+  const candlestickOption = {
+    upColor: increaseColor,
+    wickUpColor: increaseColor,
+    downColor: decreaseColor,
+    wickDownColor: decreaseColor,
+    borderVisible: false,
+  }
+
   if (isLoading) {
     return <Skeleton count={1} height={350} />
   }
