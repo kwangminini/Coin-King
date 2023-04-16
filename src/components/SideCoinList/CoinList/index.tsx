@@ -1,21 +1,17 @@
 'use client'
 
 import List from '@/components/common/List'
-import useGetCoinState from '@/hooks/useGetCoinState'
 import { coinList, ICoin } from '@/constants/coinList'
-import { getSignedChangeRate } from '@/utils/coinUtil/getSignedChangeRate'
-import { getTextColor } from '@/utils/coinUtil/getTextColor'
 import { useRouter } from 'next/navigation'
-import Skeleton from 'react-loading-skeleton'
+import DataCell from '@/components/SideCoinList/CoinList/DataCell'
 
 export default function CoinList() {
   const router = useRouter()
-  const { getCoinState } = useGetCoinState()
+
   return (
     <List>
       {coinList &&
         coinList.map(({ name, unit, id }: ICoin) => {
-          const coinState = getCoinState(id)
           return (
             <List.Row
               style="h-50 border-b border-main-border-color px-25 cursor-pointer"
@@ -30,32 +26,7 @@ export default function CoinList() {
                   <p className="text-11 text-gray-400">{unit}</p>
                 </div>
               </List.Cell>
-              <List.Cell
-                style={`max-w-106 px-19 justify-end text-xs font-semibold ${getTextColor(
-                  coinState
-                )}`}
-              >
-                <span>
-                  {coinState.tp != null ? (
-                    coinState.tp.toLocaleString('ko-KR')
-                  ) : (
-                    <Skeleton count={1} width={70} height={20} />
-                  )}
-                </span>
-              </List.Cell>
-              <List.Cell
-                style={`max-w-59 justify-end text-xs font-semibold ${getTextColor(
-                  coinState
-                )}`}
-              >
-                <span>
-                  {coinState.scr != null ? (
-                    getSignedChangeRate(coinState.scr)
-                  ) : (
-                    <Skeleton count={1} width={40} height={20} />
-                  )}
-                </span>
-              </List.Cell>
+              <DataCell coinId={id} />
             </List.Row>
           )
         })}
