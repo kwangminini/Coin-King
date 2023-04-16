@@ -5,6 +5,7 @@ import Menu from './Menu'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Logo from '@/components/icons/Logo'
 import Link from 'next/link'
+import { Button } from '@/components/common/Button'
 
 export default function Navigation() {
   const { data: session } = useSession()
@@ -22,12 +23,9 @@ export default function Navigation() {
         <Logo />
       </Link>
       <Menu />
-      <button
-        className="border border-main-border-color rounded-sm w-85 h-34 text-sm mr-24 dark:text-white"
-        onClick={handleLogin}
-      >
+      <Button onClick={handleLogin} className="w-85 h-34 mr-24">
         {session ? '로그아웃' : '로그인'}
-      </button>
+      </Button>
       <ThemeButton />
     </nav>
   )
