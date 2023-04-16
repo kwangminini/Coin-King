@@ -1,4 +1,4 @@
-import { atom } from 'recoil'
+import { atom, selectorFamily } from 'recoil'
 
 export interface ICoinState {
   tp?: number //현재가
@@ -6,12 +6,16 @@ export interface ICoinState {
   scr?: number //전일대비 퍼센트
 }
 
-const suffix = 'InfoState'
+export interface ICoinStateObj {
+  [key: string]: ICoinState
+  btc: ICoinState
+  eth: ICoinState
+  xrp: ICoinState
+}
 
 const atomKey = {
-  btc: 'btc' + suffix,
-  eth: 'eth' + suffix,
-  xrp: 'xrp' + suffix,
+  coin: 'coinState',
+  coinSelector: 'coinSelector',
 }
 
 export const defaultState = {
@@ -19,17 +23,21 @@ export const defaultState = {
   c: undefined,
   scr: undefined,
 }
-export const btcState = atom<ICoinState>({
-  key: atomKey.btc,
-  default: defaultState,
+export const coinStateObj = atom<ICoinStateObj>({
+  key: atomKey.coin,
+  default: {
+    btc: defaultState,
+    eth: defaultState,
+    xrp: defaultState,
+  },
 })
 
-export const ethState = atom<ICoinState>({
-  key: atomKey.eth,
-  default: defaultState,
-})
-
-export const xrpState = atom<ICoinState>({
-  key: atomKey.xrp,
-  default: defaultState,
+export const getCoinState = selectorFamily<ICoinState, string>({
+  key: atomKey.coinSelector,
+  get:
+    (coinId) =>
+    ({ get }) => {
+      const _coinStateObj = get(coinStateObj)
+      return _coinStateObj[coinId]
+    },
 })
