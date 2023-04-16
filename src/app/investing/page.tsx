@@ -16,7 +16,7 @@ export default function Investing() {
     return router.push('/investing?coin=btc')
   }
   return (
-    <section className="flex h-full px-20 flex-col">
+    <section className="flex h-full px-100 flex-col">
       <CoinHeader selectedCoin={selectedCoin} />
       <TradingChart selectedCoin={selectedCoin} />
       <TradingForm />
