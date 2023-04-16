@@ -1,25 +1,17 @@
 import { ICoin } from '@/constants/coinList'
-import Image from 'next/image'
 import PriceBox from '@/components/CoinCard/PriceBox'
+import { ImageWidthDark } from '@/components/common/ImageWidthDark'
 
 export default function CoinCard({ icon, darkIcon, name, unit, id }: ICoin) {
   return (
     <div className="w-full max-w-500 h-80 border-[#eee] border shadow-[0_8px_16px_rgba(0,0,0,0.16)] rounded-xl px-36 flex items-center">
-      {/**일반모드일 때 아이콘 */}
-      <Image
+      <ImageWidthDark
         src={icon}
+        darkSrc={darkIcon}
         alt={id}
+        darkAlt={id}
         width={34}
         height={34}
-        className="dark:hidden"
-      />
-      {/**다크모드일 때 아이콘 */}
-      <Image
-        src={darkIcon}
-        alt={id}
-        width={34}
-        height={34}
-        className="hidden dark:block"
       />
       <div className="ml-6 flex flex-col">
         <p className="text-base text-main-font-color dark:text-white">{name}</p>
