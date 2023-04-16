@@ -11,10 +11,8 @@ export default function Navigation() {
 
   const handleLogin = () => {
     if (session) {
-      console.log('로그아웃')
       signOut()
     } else {
-      console.log('로그인')
       signIn()
     }
   }
