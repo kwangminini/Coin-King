@@ -4,7 +4,7 @@ interface IImageWidthDark {
   src: string
   alt: string
   darkSrc: string
-  darkAlt: string
+  darkAlt?: string
   width: number
   height: number
 }
@@ -30,7 +30,7 @@ export function ImageWidthDark({
       {/* 다크모드 이미지 */}
       <Image
         src={darkSrc}
-        alt={darkAlt}
+        alt={darkAlt ? darkAlt : alt}
         width={width}
         height={height}
         className="hidden dark:flex"

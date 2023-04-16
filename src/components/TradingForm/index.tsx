@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { decreaseColor, increaseColor, mainFontColor } from '@/constants/color'
 import { useSearchParams } from 'next/navigation'
+import { ImageWidthDark } from '@/components/common/ImageWidthDark'
 interface IOrderOptions {
   key: string
   value: string
@@ -118,10 +119,22 @@ export default function TradingForm() {
               border={false}
             />
             <button className="min-w-30 flex justify-center items-center border-r border-l">
-              <Minus />
+              <ImageWidthDark
+                src={'/minus.svg'}
+                alt={'minus'}
+                darkSrc={'/minus_dark.svg'}
+                width={14}
+                height={14}
+              />
             </button>
             <button className="min-w-30 flex justify-center items-center">
-              <Plus />
+              <ImageWidthDark
+                src={'/plus.svg'}
+                alt={'plus'}
+                darkSrc={'/plus_dark.svg'}
+                width={14}
+                height={14}
+              />
             </button>
           </div>
         </Row>
