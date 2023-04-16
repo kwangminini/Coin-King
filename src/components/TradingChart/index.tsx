@@ -6,6 +6,8 @@ import Skeleton from 'react-loading-skeleton'
 import { createChart } from 'lightweight-charts'
 import { ICoin } from '@/constants/coinList'
 import { getDayCandlestickData } from '@/utils/coinUtil/getDayCandlestickData'
+import { IDayCandles } from '@/types/upbit/candles'
+import { decreaseColor, increaseColor } from '@/constants/color'
 
 export default function TradingChart({
   selectedCoin,
@@ -18,17 +20,22 @@ export default function TradingChart({
   useEffect(() => {
     if (isSuccess && chartRef.current) {
       initChartElement(chartRef.current)
-      const chart = createChart(chartRef.current)
-      const candlestickSeries = chart.addCandlestickSeries({
-        upColor: '#26a69a',
-        downColor: '#ef5350',
-        borderVisible: false,
-        wickUpColor: '#26a69a',
-        wickDownColor: '#ef5350',
-      })
-      candlestickSeries.setData(getDayCandlestickData(data))
+      drawChart(chartRef.current, data)
     }
   }, [data, isSuccess])
+
+  const drawChart = (container: HTMLDivElement, data: IDayCandles[]) => {
+    const chart = createChart(container, { width: 600 })
+
+    const candlestickSeries = chart.addCandlestickSeries({
+      upColor: increaseColor,
+      downColor: decreaseColor,
+      borderVisible: false,
+      wickUpColor: '#26a69a',
+      wickDownColor: '#ef5350',
+    })
+    candlestickSeries.setData(getDayCandlestickData(data))
+  }
 
   const initChartElement = (chartElement: HTMLElement) => {
     //이미 만들어진 차트가 있다면 삭제
@@ -49,11 +56,5 @@ export default function TradingChart({
     return <Skeleton count={1} height={350} />
   }
 
-  return (
-    <div
-      id="chart"
-      className="h-350 border-gray-200 border w-full"
-      ref={chartRef}
-    />
-  )
+  return <div id="chart" className="h-350" ref={chartRef} />
 }
