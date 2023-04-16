@@ -23,7 +23,7 @@ export default function Navigation() {
         <Logo />
       </Link>
       <Menu />
-      <Button onClick={handleLogin} className="w-85 h-34 mr-24">
+      <Button onClick={handleLogin} className="h-34 mr-24 whitespace-nowrap">
         {session ? '로그아웃' : '로그인'}
       </Button>
       <ThemeButton />

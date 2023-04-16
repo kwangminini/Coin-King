@@ -12,7 +12,7 @@ export default async function SignPage() {
 
   const providers = (await getProviders()) || {}
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center h-full">
       <Signin providers={providers} />
     </section>
   )

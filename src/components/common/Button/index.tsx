@@ -7,7 +7,7 @@ interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
 export function Button({ children, className, onClick }: IButtonProps) {
   return (
     <button
-      className={`border border-main-border-color rounded-sm text-sm dark:text-white ${className}`}
+      className={`border border-main-border-color px-20 rounded-sm text-sm dark:text-white ${className}`}
       onClick={onClick}
     >
       {children}
