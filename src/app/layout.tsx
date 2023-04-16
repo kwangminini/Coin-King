@@ -3,7 +3,7 @@ import './globals.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Inter } from 'next/font/google'
 import RecoilContext from '@/context/RecoilContext'
-import WebsocketContext from '@/context/WebsocketContext'
+import WebsocketConnect from '@/components/WebsocketConnect'
 import AuthContext from '@/context/AuthContext/indext'
 import ThemeContext from '@/context/ThemeContext'
 import ReactQueryContext from '@/context/ReactQueryContext'
@@ -28,7 +28,8 @@ export default function RootLayout({
               <Navigation />
               <main className="h-[calc(100vh-60px)] w-full">
                 <RecoilContext>
-                  <WebsocketContext>{children}</WebsocketContext>
+                  <WebsocketConnect />
+                  {children}
                 </RecoilContext>
               </main>
             </AuthContext>
