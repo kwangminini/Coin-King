@@ -3,11 +3,14 @@
 import { useGetDayCandles } from '@/queries/upbit'
 import { useEffect, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { createChart } from 'lightweight-charts'
+import { ISeriesApi, createChart } from 'lightweight-charts'
 import { ICoin } from '@/constants/coinList'
 import { getDayCandlestickData } from '@/utils/coinUtil/getDayCandlestickData'
 import { IDayCandles } from '@/types/upbit/candles'
 import { decreaseColor, increaseColor } from '@/constants/color'
+import useGetCoinState from '@/hooks/useGetCoinState'
+import { formatToYyyyMmDd } from '@/utils/dateUtil/formatToYyyyMmDd'
+import { ICoinState } from '@/atoms/coinsAtom'
 
 export default function TradingChart({
   selectedCoin,
@@ -15,8 +18,9 @@ export default function TradingChart({
   selectedCoin: ICoin
 }) {
   const { data, isLoading, isSuccess } = useGetDayCandles(selectedCoin.codes!)
+  const { coinState } = useGetCoinState(selectedCoin.id)
   const chartRef = useRef<HTMLDivElement>(null)
-
+  const candlestickRef = useRef<ISeriesApi<'Candlestick'>>()
   useEffect(() => {
     if (isSuccess && chartRef.current) {
       initChartElement(chartRef.current)
@@ -24,17 +28,19 @@ export default function TradingChart({
     }
   }, [data, isSuccess])
 
+  useEffect(() => {
+    updateChart()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coinState])
+
   const drawChart = (container: HTMLDivElement, data: IDayCandles[]) => {
     const chart = createChart(container, { width: 600 })
-
-    const candlestickSeries = chart.addCandlestickSeries({
+    candlestickRef.current = chart.addCandlestickSeries({
       upColor: increaseColor,
       downColor: decreaseColor,
       borderVisible: false,
-      wickUpColor: '#26a69a',
-      wickDownColor: '#ef5350',
     })
-    candlestickSeries.setData(getDayCandlestickData(data))
+    candlestickRef.current.setData(getDayCandlestickData(data))
   }
 
   const initChartElement = (chartElement: HTMLElement) => {
@@ -52,6 +58,21 @@ export default function TradingChart({
     }
   }
 
+  const updateChart = () => {
+    if (candlestickRef.current) {
+      candlestickRef.current.update(getRealtimeCandlestickData(coinState))
+    }
+  }
+
+  const getRealtimeCandlestickData = (coinState: ICoinState) => {
+    return {
+      time: formatToYyyyMmDd(String(new Date())),
+      open: coinState.op,
+      high: coinState.hp,
+      low: coinState.lp,
+      close: coinState.tp,
+    }
+  }
   if (isLoading) {
     return <Skeleton count={1} height={350} />
   }

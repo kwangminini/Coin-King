@@ -15,6 +15,9 @@ export default function useSetCoinData() {
       c: data.c,
       scr: Number((data.scr * 100).toFixed(2)),
       tp: data.tp,
+      op: data.op,
+      hp: data.hp,
+      lp: data.lp,
     }
   }
 
