@@ -1,5 +1,6 @@
 'use client'
 
+import { coinList } from '@/constants/coinList'
 import useSetCoinData from '@/hooks/useSetCoinData'
 import { IUpbitCoin } from '@/types/upbit/coin'
 import { useEffect, useRef, useState } from 'react'
@@ -22,14 +23,7 @@ export default function useWebsocket() {
           { ticket: 'test' },
           {
             type: 'ticker',
-            codes: [
-              'KRW-BTC',
-              'KRW-ETH',
-              'KRW-ETC',
-              'KRW-ADA',
-              'KRW-XRP',
-              'KRW-DOGE',
-            ],
+            codes: coinList.map((coinItem) => coinItem.codes),
           },
           { format: 'SIMPLE' },
         ]
