@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: {
     default: '코인왕',
-    template: '코인완 | %s',
+    template: '코인왕 | %s',
   },
   description: '코인 모의 투자',
 }
