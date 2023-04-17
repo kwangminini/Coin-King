@@ -23,6 +23,9 @@ export default function Navigation() {
         <Logo />
       </Link>
       <Menu />
+      {session && (
+        <span className="whitespace-nowrap mr-8">{session.user?.name}님</span>
+      )}
       <Button onClick={handleLogin} className="h-34 mr-24 whitespace-nowrap">
         {session ? '로그아웃' : '로그인'}
       </Button>
