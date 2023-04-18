@@ -6,17 +6,24 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import Logo from '@/components/icons/Logo'
 import Link from 'next/link'
 import { Button } from '@/components/common/Button'
+import LoadingBar from '@/components/common/LoadingBar'
+import { Session } from 'next-auth'
 
-export default function Navigation() {
-  const { data: session } = useSession()
+interface INavigationProps {
+  session: Session | null
+}
 
-  const handleLogin = () => {
+export default function Navigation({ session }: INavigationProps) {
+  const { status } = useSession()
+
+  const handleLogin = async () => {
     if (session) {
-      signOut()
+      await signOut()
     } else {
-      signIn()
+      await signIn()
     }
   }
+
   return (
     <nav className="w-full h-60 flex border-solid border-main-border-color border-b items-center px-40 dark:border-white">
       <Link href={'/'} className="min-w-76">
@@ -30,6 +37,7 @@ export default function Navigation() {
         {session ? '로그아웃' : '로그인'}
       </Button>
       <ThemeButton />
+      {status === 'loading' && <LoadingBar />}
     </nav>
   )
 }

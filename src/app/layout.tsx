@@ -7,6 +7,8 @@ import WebsocketConnect from '@/components/WebsocketConnect'
 import AuthContext from '@/context/AuthContext/indext'
 import ThemeContext from '@/context/ThemeContext'
 import ReactQueryContext from '@/context/ReactQueryContext'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -17,18 +19,19 @@ export const metadata = {
   description: '코인 모의 투자',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession(authOptions)
   return (
     <html lang="en" className={inter.className}>
       <body className="w-full">
         <ThemeContext>
           <ReactQueryContext>
             <AuthContext>
-              <Navigation />
+              <Navigation session={session} />
               <main className="h-[calc(100vh-60px)] w-full">
                 <RecoilContext>
                   <WebsocketConnect />
