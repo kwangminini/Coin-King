@@ -2,11 +2,10 @@
 'use client'
 import ThemeButton from '@/components/Navigation/ThemeButton'
 import Menu from './Menu'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { signIn, signOut } from 'next-auth/react'
 import Logo from '@/components/icons/Logo'
 import Link from 'next/link'
 import { Button } from '@/components/common/Button'
-import LoadingBar from '@/components/common/LoadingBar'
 import { Session } from 'next-auth'
 
 interface INavigationProps {
@@ -14,8 +13,6 @@ interface INavigationProps {
 }
 
 export default function Navigation({ session }: INavigationProps) {
-  const { status } = useSession()
-
   const handleLogin = async () => {
     if (session) {
       await signOut()
@@ -37,7 +34,6 @@ export default function Navigation({ session }: INavigationProps) {
         {session ? '로그아웃' : '로그인'}
       </Button>
       <ThemeButton />
-      {status === 'loading' && <LoadingBar />}
     </nav>
   )
 }
