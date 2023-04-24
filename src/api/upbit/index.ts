@@ -14,3 +14,17 @@ export const getDayCandles = async (coinCodes: string) => {
     console.log(error)
   }
 }
+
+/**
+ * 코인 현재 시세 조회
+ * @param coinCodes 코인 코드 (ex KRW-BTC)
+ * @returns 코인 현재 시세
+ */
+export const getCoinTicker = async (coinCodes: string) => {
+  try {
+    const response = await upbitAPI.get(`ticker?markets=${coinCodes}`)
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
+}
