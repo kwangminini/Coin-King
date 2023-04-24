@@ -19,7 +19,7 @@ export default function Investing() {
     <section className="flex h-full px-100 flex-col">
       <CoinHeader selectedCoin={selectedCoin} />
       <TradingChart selectedCoin={selectedCoin} />
-      <TradingForm />
+      <TradingForm selectedCoin={selectedCoin} />
     </section>
   )
 }
