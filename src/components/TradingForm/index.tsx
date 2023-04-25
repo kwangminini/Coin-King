@@ -1,7 +1,5 @@
 'use client'
 
-import Minus from '@/components/icons/Minus'
-import Plus from '@/components/icons/Plus'
 import Radio from '@/components/icons/Radio'
 import Refresh from '@/components/icons/Refresh'
 import Row from '@/components/TradingForm/Row'
@@ -13,6 +11,9 @@ import { useForm } from 'react-hook-form'
 import { decreaseColor, increaseColor, mainFontColor } from '@/constants/color'
 import { useSearchParams } from 'next/navigation'
 import { ImageWidthDark } from '@/components/common/ImageWidthDark'
+import { ICoin } from '@/constants/coinList'
+import { useGetCoinTicker } from '@/queries/upbit'
+import LoadingBar from '@/components/common/LoadingBar'
 interface IOrderOptions {
   key: string
   value: string
@@ -39,13 +40,16 @@ const menu: IMenu[] = [
   { key: 'history', value: '거래내역', activeColor: mainFontColor },
 ]
 
-const defaultValues = {
-  price: 0, //주문금액
-  count: 0, //주문수량
-  totalPrice: 0, //주문총액
+interface ITradingForm {
+  selectedCoin: ICoin
 }
+// const defaultValues = {
+//   price: 0, //주문금액
+//   count: 0, //주문수량
+//   totalPrice: 0, //주문총액
+// }
 
-export default function TradingForm() {
+export default function TradingForm({ selectedCoin }: ITradingForm) {
   const searchParams = useSearchParams()
   const coinId = searchParams?.get('coin')
   const [activeMenu, setActiveMenu] = useState<IMenu>(menu[0])
@@ -53,9 +57,18 @@ export default function TradingForm() {
     orderOption: 'limit', //주문구분
     possiblePrice: 1000000, //주문가능금액
   })
+  const [defaultValues, setDefaultValues] = useState({
+    price: 0,
+    count: 0,
+    totalPrice: 0,
+  })
+  const { data: coinTicker, isLoading } = useGetCoinTicker(
+    selectedCoin.codes || ''
+  )
   const { handleSubmit, reset, control } = useForm<IFormInputData>({
     defaultValues,
   })
+
   const onSubmit = (data: any) => {
     console.log(data)
     console.log(typeof data.price)
@@ -84,8 +97,10 @@ export default function TradingForm() {
     setFormData({ ...formData, [key]: value })
   }
 
+  console.log('coinTicker::', coinTicker)
   return (
     <article className="max-w-360 mt-20">
+      {isLoading && <LoadingBar />}
       <TabBar
         activeMenu={activeMenu}
         handleActiveMenu={handleActiveMenu}
@@ -115,7 +130,9 @@ export default function TradingForm() {
             <Input
               name={'price'}
               control={control}
-              defaultValue={defaultValues.price}
+              defaultValue={
+                coinTicker?.trade_price ? coinTicker?.trade_price : 100
+              }
               border={false}
             />
             <button className="min-w-30 flex justify-center items-center border-r border-l">

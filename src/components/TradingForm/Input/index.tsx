@@ -6,7 +6,7 @@ import { IFormInputData } from '@/components/TradingForm'
 interface IInputProps {
   name: 'price' | 'count' | 'totalPrice'
   control: Control<IFormInputData>
-  defaultValue: number
+  defaultValue?: number
   border: boolean
 }
 
@@ -16,6 +16,7 @@ export default function Input({
   defaultValue,
   border,
 }: IInputProps) {
+  console.log('defaultValue::', defaultValue)
   return (
     <Controller
       name={name}
@@ -23,6 +24,7 @@ export default function Input({
       defaultValue={defaultValue}
       render={({ field }) => (
         <NumericFormat
+          defaultValue={defaultValue}
           thousandSeparator={true}
           className={getInputStyle(border)}
           {...field}
