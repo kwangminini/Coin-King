@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
 import { IDayCandles } from '@/types/upbit/candles'
-import { formatToYyyyMmDd } from '@/utils/dateUtil/formatToYyyyMmDd'
+import { formatToYyyyMmDd } from '@/utils/dateUtil'
 /**
  * 일봉 차트에 필요한 데이터로 가공해주는 함수
  * @param {IDayCandles[]} dayCandlesArr

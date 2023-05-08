@@ -1,7 +1,7 @@
 'use client'
 
 import useGetCoinState from '@/hooks/useGetCoinState'
-import { getTextColor } from '@/utils/coinUtil/getTextColor'
+import { getTextColor } from '@/utils/coinUtil'
 import { useEffect, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
 

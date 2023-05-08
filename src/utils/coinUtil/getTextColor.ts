@@ -17,7 +17,6 @@ export function getTextColor(coinState: ICoinState, hex = false): string {
     return hex ? increaseColor : 'text-increase-color'
   } else if (coinState.c === 'FALL') {
     return hex ? decreaseColor : 'text-decrease-color'
-  } else {
-    return hex ? mainFontColor : 'text-main-text-color'
   }
+  return hex ? mainFontColor : 'text-main-text-color'
 }
