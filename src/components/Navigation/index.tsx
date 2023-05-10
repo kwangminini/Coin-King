@@ -5,7 +5,7 @@ import Menu from './Menu'
 import { signIn, signOut } from 'next-auth/react'
 import Logo from '@/components/icons/Logo'
 import Link from 'next/link'
-import { Button } from '@/components/common/Button'
+import { DefaultButton } from '@/components/common/Button'
 import { Session } from 'next-auth'
 
 interface INavigationProps {
@@ -30,9 +30,12 @@ export default function Navigation({ session }: INavigationProps) {
       {session && (
         <span className="whitespace-nowrap mr-8">{session.user?.name}님</span>
       )}
-      <Button onClick={handleLogin} className="h-34 mr-24 whitespace-nowrap">
+      <DefaultButton
+        onClick={handleLogin}
+        className="h-34 mr-24 whitespace-nowrap"
+      >
         {session ? '로그아웃' : '로그인'}
-      </Button>
+      </DefaultButton>
       <ThemeButton />
     </nav>
   )

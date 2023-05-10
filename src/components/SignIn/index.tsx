@@ -1,5 +1,5 @@
 'use client'
-import { Button } from '@/components/common/Button'
+import { DefaultButton } from '@/components/common/Button'
 import Logo from '@/components/icons/Logo'
 import { ClientSafeProvider } from 'next-auth/react'
 import { signIn } from 'next-auth/react'
@@ -13,13 +13,13 @@ export default function Signin({ providers }: ISigninProps) {
       <Logo width={180} height={60} className="mt-150" />
       <div className="mt-150">
         {Object.values(providers).map((provider) => (
-          <Button
+          <DefaultButton
             key={provider.id}
             onClick={() => signIn(provider.id)}
             className="h-40 w-250 text-16 font-semibold"
           >
             구글 로그인
-          </Button>
+          </DefaultButton>
         ))}
       </div>
     </article>
