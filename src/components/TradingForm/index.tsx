@@ -13,7 +13,7 @@ import { useSearchParams } from 'next/navigation'
 import { ImageWidthDark } from '@/components/common/ImageWidthDark'
 import { ICoin } from '@/constants/coinList'
 import { useGetCoinTicker } from '@/queries/upbit'
-import LoadingBar from '@/components/common/LoadingBar'
+
 interface IOrderOptions {
   key: string
   value: string
@@ -100,7 +100,6 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
   console.log('coinTicker::', coinTicker)
   return (
     <article className="max-w-360 mt-20">
-      {isLoading && <LoadingBar />}
       <TabBar
         activeMenu={activeMenu}
         handleActiveMenu={handleActiveMenu}
