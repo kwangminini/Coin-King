@@ -3,6 +3,7 @@
 import CoinHeader from '@/components/CoinHeader'
 import TradingChart from '@/components/TradingChart'
 import TradingForm from '@/components/TradingForm'
+import AsyncBoundary from '@/components/common/AsyncBoundary'
 import { coinList, ICoin } from '@/constants/coinList'
 import { useSearchParams, useRouter } from 'next/navigation'
 
@@ -18,7 +19,9 @@ export default function Investing() {
   return (
     <section className="flex h-full px-100 flex-col">
       <CoinHeader selectedCoin={selectedCoin} />
-      <TradingChart selectedCoin={selectedCoin} />
+      <AsyncBoundary>
+        <TradingChart selectedCoin={selectedCoin} />
+      </AsyncBoundary>
       <TradingForm selectedCoin={selectedCoin} />
     </section>
   )
