@@ -18,3 +18,12 @@ model user{
   createdAt DateTime @default(now())
   is_del Boolean @default(false)
 }
+
+model buy{
+  id Int @id @default(autoincrement())
+  price Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  userId Int 
+  @@index([userId])
+}
