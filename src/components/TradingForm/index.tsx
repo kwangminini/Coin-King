@@ -4,7 +4,6 @@ import Radio from '@/components/icons/Radio'
 import Refresh from '@/components/icons/Refresh'
 import Row from '@/components/TradingForm/Row'
 import TabBar from '@/components/TradingForm/TabBar'
-import Input from '@/components/TradingForm/Input'
 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -13,15 +12,17 @@ import { useSearchParams } from 'next/navigation'
 import { ImageWidthDark } from '@/components/common/ImageWidthDark'
 import { ICoin } from '@/constants/coinList'
 import { useGetCoinTicker } from '@/queries/upbit'
+import DefaultInput from '@/components/common/Input/DefaultInput'
+import { preventZeroStart, thousandSeparator } from '@/utils/stringUtil'
 
 interface IOrderOptions {
   key: string
   value: string
 }
 export interface IFormInputData {
-  price: number
-  count: number
-  totalPrice: number
+  price: string
+  count: string
+  totalPrice: string
 }
 export interface IMenu {
   key: string
@@ -58,16 +59,17 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
     possiblePrice: 1000000, //주문가능금액
   })
   const [defaultValues, setDefaultValues] = useState({
-    price: 0,
-    count: 0,
-    totalPrice: 0,
+    price: '0',
+    count: '0',
+    totalPrice: '0',
   })
   const { data: coinTicker, isLoading } = useGetCoinTicker(
     selectedCoin.codes || ''
   )
-  const { handleSubmit, reset, control } = useForm<IFormInputData>({
-    defaultValues,
-  })
+  const { handleSubmit, reset, control, register, setValue } =
+    useForm<IFormInputData>({
+      defaultValues,
+    })
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -95,6 +97,22 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
 
   const handleFormData = (key: string, value: string | number) => {
     setFormData({ ...formData, [key]: value })
+  }
+
+  const handleOnChange = (
+    name: keyof IFormInputData,
+    thousandSeparatorFlag: boolean
+  ) => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target
+      const preventZeroStartValue = preventZeroStart(value)
+      setValue(
+        name,
+        thousandSeparatorFlag
+          ? thousandSeparator(preventZeroStartValue)
+          : preventZeroStartValue
+      )
+    }
   }
 
   console.log('coinTicker::', coinTicker)
@@ -126,14 +144,19 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
         </Row>
         <Row label="매수가격">
           <div className="flex border border-[#DFE0E5] rounded-sm h-full">
-            <Input
+            <DefaultInput
+              register={register('price')}
+              onChange={handleOnChange('price', true)}
+              className={'border-none'}
+            />
+            {/* <Input
               name={'price'}
               control={control}
               defaultValue={
                 coinTicker?.trade_price ? coinTicker?.trade_price : 100
               }
               border={false}
-            />
+            /> */}
             <button className="min-w-30 flex justify-center items-center border-r border-l">
               <ImageWidthDark
                 src={'/minus.svg'}
@@ -155,19 +178,15 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
           </div>
         </Row>
         <Row label="주문수량" height={73}>
-          <Input
-            name={'count'}
-            control={control}
-            defaultValue={defaultValues.count}
-            border={true}
+          <DefaultInput
+            register={register('count')}
+            onChange={handleOnChange('count', true)}
           />
         </Row>
         <Row label="주문총액">
-          <Input
-            name={'totalPrice'}
-            control={control}
-            defaultValue={defaultValues.totalPrice}
-            border={true}
+          <DefaultInput
+            register={register('totalPrice')}
+            onChange={handleOnChange('totalPrice', true)}
           />
         </Row>
         {activeMenu.key !== 'history' && (
