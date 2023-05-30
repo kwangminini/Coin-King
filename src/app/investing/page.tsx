@@ -6,6 +6,7 @@ import TradingForm from '@/components/TradingForm'
 import AsyncBoundary from '@/components/common/AsyncBoundary'
 import { coinList, ICoin } from '@/constants/coinList'
 import { useSearchParams, useRouter } from 'next/navigation'
+import Skeleton from 'react-loading-skeleton'
 
 export default function Investing() {
   const searchParams = useSearchParams()
@@ -19,7 +20,7 @@ export default function Investing() {
   return (
     <section className="flex h-full px-100 flex-col">
       <CoinHeader selectedCoin={selectedCoin} />
-      <AsyncBoundary>
+      <AsyncBoundary SuspenseFallBack={<Skeleton count={1} height={350} />}>
         <TradingChart selectedCoin={selectedCoin} />
       </AsyncBoundary>
       <TradingForm selectedCoin={selectedCoin} />
