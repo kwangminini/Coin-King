@@ -2,7 +2,7 @@
 
 import Radio from '@/components/icons/Radio'
 import Refresh from '@/components/icons/Refresh'
-import Row from '@/components/TradingForm/Row'
+import LabelRow from '@/components/TradingForm/LabelRow'
 import TabBar from '@/components/TradingForm/TabBar'
 
 import { useEffect, useState } from 'react'
@@ -44,11 +44,6 @@ const menu: IMenu[] = [
 interface ITradingForm {
   selectedCoin: ICoin
 }
-// const defaultValues = {
-//   price: 0, //주문금액
-//   count: 0, //주문수량
-//   totalPrice: 0, //주문총액
-// }
 
 export default function TradingForm({ selectedCoin }: ITradingForm) {
   const searchParams = useSearchParams()
@@ -124,7 +119,7 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
         menu={menu}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Row label="주문구분" height={30}>
+        <LabelRow label="주문구분" style={{ height: 30 }}>
           {orderOptions.map(({ key, value }: IOrderOptions) => (
             <button
               className="flex flex-1 items-center"
@@ -135,28 +130,20 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
               <span className="ml-8 text-sm dark:text-white">{value}</span>
             </button>
           ))}
-        </Row>
-        <Row label="주문가능">
+        </LabelRow>
+        <LabelRow label="주문가능">
           <span className="font-semibold text-lg ml-auto">
             {formData.possiblePrice.toLocaleString('ko-KR')}
           </span>
           <span className="text-sm text-sub-font-color ml-8">KRW</span>
-        </Row>
-        <Row label="매수가격">
+        </LabelRow>
+        <LabelRow label="매수가격">
           <div className="flex border border-[#DFE0E5] rounded-sm h-full">
             <DefaultInput
               register={register('price')}
               onChange={handleOnChange('price', true)}
               className={'border-none'}
             />
-            {/* <Input
-              name={'price'}
-              control={control}
-              defaultValue={
-                coinTicker?.trade_price ? coinTicker?.trade_price : 100
-              }
-              border={false}
-            /> */}
             <button className="min-w-30 flex justify-center items-center border-r border-l">
               <ImageWidthDark
                 src={'/minus.svg'}
@@ -176,19 +163,19 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
               />
             </button>
           </div>
-        </Row>
-        <Row label="주문수량" height={73}>
+        </LabelRow>
+        <LabelRow label="주문수량">
           <DefaultInput
             register={register('count')}
             onChange={handleOnChange('count', true)}
           />
-        </Row>
-        <Row label="주문총액">
+        </LabelRow>
+        <LabelRow label="주문총액">
           <DefaultInput
             register={register('totalPrice')}
             onChange={handleOnChange('totalPrice', true)}
           />
-        </Row>
+        </LabelRow>
         {activeMenu.key !== 'history' && (
           <div className="flex h-44 px-16 mt-20">
             <button
