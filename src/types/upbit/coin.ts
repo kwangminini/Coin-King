@@ -48,7 +48,7 @@ export interface ICoinTicker {
   prev_closing_price: number //	전일 종가(UTC 0시 기준)
   change: 'EVEN' | 'RISE' | 'FALL' // 보합 | 상승 | 하락
   change_price: number //	변화액의 절대값
-  change_rate: numbert //	변화율의 절대값
+  change_rate: number //	변화율의 절대값
   signed_change_price: number //	부호가 있는 변화액
   signed_change_rate: number //	부호가 있는 변화율
   trade_volume: number //가장 최근 거래량
