@@ -13,6 +13,8 @@ export default function ReactQueryContext({
       queries: {
         refetchOnWindowFocus: false, //화면 다른 곳 이동하다가 왔을 때 fetch 방지
         retry: 0, //실패 시 재호출 방지
+        suspense: true,
+        useErrorBoundary: true,
       },
     },
   })
