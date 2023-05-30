@@ -1,3 +1,4 @@
+'use client'
 import LoadingBar from '@/components/common/LoadingBar'
 import { Suspense, SuspenseProps } from 'react'
 import {
