@@ -2,7 +2,6 @@
 
 import { useGetDayCandles } from '@/queries/upbit'
 import { useEffect, useRef } from 'react'
-import Skeleton from 'react-loading-skeleton'
 import { ISeriesApi, createChart } from 'lightweight-charts'
 import { ICoin } from '@/constants/coinList'
 import { getDayCandlestickData } from '@/utils/coinUtil'
@@ -18,7 +17,7 @@ export default function TradingChart({
 }: {
   selectedCoin: ICoin
 }) {
-  const { data, isLoading, isSuccess } = useGetDayCandles(selectedCoin.codes!)
+  const { data, isSuccess } = useGetDayCandles(selectedCoin.codes!)
   const { coinState } = useGetCoinState(selectedCoin.id)
   const chartRef = useRef<HTMLDivElement>(null)
   const candlestickRef = useRef<ISeriesApi<'Candlestick'>>()
@@ -106,10 +105,6 @@ export default function TradingChart({
     downColor: decreaseColor,
     wickDownColor: decreaseColor,
     borderVisible: false,
-  }
-
-  if (isLoading) {
-    return <Skeleton count={1} height={350} />
   }
 
   return <div id="chart" className="h-350" ref={chartRef} />
