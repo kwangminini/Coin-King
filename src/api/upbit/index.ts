@@ -23,7 +23,7 @@ export const getDayCandles = async (coinCodes: string) => {
 export const getCoinTicker = async (coinCodes: string) => {
   try {
     const response = await upbitAPI.get(`ticker?markets=${coinCodes}`)
-    return response.data
+    return response.data[0]
   } catch (error) {
     console.log(error)
   }
