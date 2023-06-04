@@ -41,11 +41,11 @@ const menu: IMenu[] = [
   { key: 'history', value: '거래내역', activeColor: mainFontColor },
 ]
 
-interface ITradingForm {
+interface ITradingFormProps {
   selectedCoin: ICoin
 }
 
-export default function TradingForm({ selectedCoin }: ITradingForm) {
+export default function TradingForm({ selectedCoin }: ITradingFormProps) {
   const searchParams = useSearchParams()
   const coinId = searchParams?.get('coin')
   const [activeMenu, setActiveMenu] = useState<IMenu>(menu[0])
@@ -53,18 +53,15 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
     orderOption: 'limit', //주문구분
     possiblePrice: 1000000, //주문가능금액
   })
+  const { data: coinTicker } = useGetCoinTicker(selectedCoin.codes || '')
   const [defaultValues, setDefaultValues] = useState({
     price: '0',
     count: '0',
     totalPrice: '0',
   })
-  const { data: coinTicker, isLoading } = useGetCoinTicker(
-    selectedCoin.codes || ''
-  )
-  const { handleSubmit, reset, control, register, setValue } =
-    useForm<IFormInputData>({
-      defaultValues,
-    })
+  const { handleSubmit, reset, register, setValue } = useForm<IFormInputData>({
+    defaultValues,
+  })
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -76,6 +73,13 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
     init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinId])
+
+  //최초 현재가격 defaultValue 설정
+  useEffect(() => {
+    if (coinTicker?.trade_price) {
+      reset({ price: thousandSeparator(String(coinTicker.trade_price)) })
+    }
+  }, [coinTicker])
 
   //초기화
   const init = () => {
@@ -110,7 +114,6 @@ export default function TradingForm({ selectedCoin }: ITradingForm) {
     }
   }
 
-  console.log('coinTicker::', coinTicker)
   return (
     <article className="max-w-360 mt-20">
       <TabBar
