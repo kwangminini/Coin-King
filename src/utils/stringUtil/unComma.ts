@@ -4,5 +4,5 @@
  * @returns {string} , 제거된 문자열
  */
 export const unComma = (str: string): string => {
-  return str.replace(/[^\d]+/g, '')
+  return str.replace(/,/gi, '')
 }
