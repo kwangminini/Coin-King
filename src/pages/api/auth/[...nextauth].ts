@@ -1,3 +1,4 @@
+import { createUserAmount } from '@/services/userAmount'
 import { checkExist, signUp } from '@/services/user'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
@@ -19,9 +20,17 @@ export const authOptions: NextAuthOptions = {
       if (!user.email) {
         return false
       }
-      const existFlag = await checkExist(user.email)
-      if (!existFlag) {
-        await signUp(user.name || '', user.email)
+      try {
+        //계정 존재하지 체크
+        const existFlag = await checkExist(user.email)
+        if (!existFlag) {
+          //계정이 없으면 계정 생성
+          const newUser = await signUp(user.name || '', user.email)
+          //계정의 기본 금액 생성
+          await createUserAmount(newUser.id)
+        }
+      } catch (error) {
+        console.log('error ## ', error)
       }
 
       return true
