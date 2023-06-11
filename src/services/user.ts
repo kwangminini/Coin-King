@@ -33,3 +33,19 @@ export async function checkExist(email: string): Promise<boolean> {
   })
   return user ? true : false
 }
+
+/**
+ * 이메일로 가입되어있는 유저 반환
+ * @param email 유저 이일
+ * @returns
+ */
+export async function fetchUser(email: string) {
+  const user = await prisma.user.findFirst({
+    where: {
+      email,
+      is_del: false,
+    },
+  })
+
+  return user
+}
