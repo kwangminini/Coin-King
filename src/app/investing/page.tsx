@@ -23,7 +23,9 @@ export default function Investing() {
       <AsyncBoundary SuspenseFallBack={<Skeleton count={1} height={350} />}>
         <TradingChart selectedCoin={selectedCoin} />
       </AsyncBoundary>
-      <TradingForm selectedCoin={selectedCoin} />
+      <AsyncBoundary SuspenseFallBack={<Skeleton count={1} height={350} />}>
+        <TradingForm selectedCoin={selectedCoin} />
+      </AsyncBoundary>
     </section>
   )
 }
