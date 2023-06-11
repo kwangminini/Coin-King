@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, UserAmount } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -20,7 +20,7 @@ export async function createUserAmount(userId: number) {
 /**
  * 유저의 금액 가져오는 함수
  * @param userId 유저 id
- * @returns {number} 유저의 금액
+ * @returns {UserAmount} 유저의 금액 정보
  */
 export async function fetchUserAmount(userId: number) {
   const userAmount = await prisma.userAmount.findFirst({
@@ -29,5 +29,5 @@ export async function fetchUserAmount(userId: number) {
     },
   })
 
-  return userAmount?.amount
+  return userAmount
 }
