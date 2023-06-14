@@ -9,11 +9,10 @@ export interface ICoinState {
   lp?: number //저가
 }
 
-export interface ICoinStateObj {
-  [key: string]: ICoinState
-  btc: ICoinState
-  eth: ICoinState
-  xrp: ICoinState
+type coinId = 'btc' | 'eth' | 'etc' | 'ada' | 'xrp' | 'doge'
+
+type ICoinStateObj = {
+  [key in coinId]: ICoinState
 }
 
 const atomKey = {
@@ -21,7 +20,7 @@ const atomKey = {
   coinSelector: 'coinSelector',
 }
 
-export const defaultState = {
+const defaultState = {
   tp: undefined,
   c: undefined,
   scr: undefined,
@@ -41,10 +40,10 @@ export const coinStateObj = atom<ICoinStateObj>({
   },
 })
 
-export const getCoinState = selectorFamily<ICoinState, string>({
+export const getCoinState = selectorFamily<ICoinState, coinId>({
   key: atomKey.coinSelector,
   get:
-    (coinId) =>
+    (coinId: coinId) =>
     ({ get }) => {
       const _coinStateObj = get(coinStateObj)
       return _coinStateObj[coinId]
