@@ -14,6 +14,7 @@ import { ICoin } from '@/constants/coinList'
 import { useGetCoinTicker } from '@/queries/upbit'
 import DefaultInput from '@/components/common/Input/DefaultInput'
 import { preventZeroStart, thousandSeparator } from '@/utils/stringUtil'
+import { useGetUserAmount } from '@/queries/userAmount'
 
 interface IOrderOptions {
   key: string
@@ -51,9 +52,10 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
   const [activeMenu, setActiveMenu] = useState<IMenu>(menu[0])
   const [formData, setFormData] = useState({
     orderOption: 'limit', //주문구분
-    possiblePrice: 1000000, //주문가능금액
+    possiblePrice: 0, //주문가능금액
   })
   const { data: coinTicker } = useGetCoinTicker(selectedCoin.codes || '')
+  const { data: userAmount } = useGetUserAmount()
   const [defaultValues, setDefaultValues] = useState({
     price: '0',
     count: '0',
@@ -113,7 +115,6 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
       )
     }
   }
-
   return (
     <article className="max-w-360 mt-20">
       <TabBar
