@@ -15,6 +15,7 @@ import { useGetCoinTicker } from '@/queries/upbit'
 import DefaultInput from '@/components/common/Input/DefaultInput'
 import { preventZeroStart, thousandSeparator } from '@/utils/stringUtil'
 import { useGetUserAmount } from '@/queries/userAmount'
+import CountPercent from '@/components/TradingForm/CountPercent'
 
 interface IOrderOptions {
   key: string
@@ -174,6 +175,7 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
             onChange={handleOnChange('count', true)}
           />
         </LabelRow>
+        <CountPercent />
         <LabelRow label="주문총액">
           <DefaultInput
             register={register('totalPrice')}
