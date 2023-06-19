@@ -18,6 +18,7 @@ module.exports = {
         'main-border-color': '#CCCCCC',
         'increase-color': '#C84A31',
         'decrease-color': '#1261C4',
+        'input-border-grey': '#DFE0E5',
       },
     },
   },
