@@ -1,5 +1,7 @@
+import { CoinId } from '@/atoms/coinsAtom'
+
 export interface ICoin {
-  id: string
+  id: CoinId
   icon: string
   darkIcon: string
   name: string

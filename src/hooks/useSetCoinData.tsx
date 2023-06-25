@@ -1,5 +1,5 @@
 'use client'
-import { coinStateObj } from '@/atoms/coinsAtom'
+import { CoinId, coinStateObj } from '@/atoms/coinsAtom'
 import { IUpbitCoin } from '@/types/upbit/coin'
 import { useSetRecoilState } from 'recoil'
 
@@ -26,7 +26,7 @@ export default function useSetCoinData() {
    * @param data websocket으로 받은 upbit data
    */
   const setCoinData = (data: IUpbitCoin) => {
-    const coinId = data.cd.split('-')[1].toLowerCase()
+    const coinId = data.cd.split('-')[1].toLowerCase() as CoinId
 
     setCoinStateObj((coinData) => {
       if (coinData[coinId].tp !== data.tp) {

@@ -1,11 +1,12 @@
 'use client'
+import { CoinId } from '@/atoms/coinsAtom'
 import List from '@/components/common/List'
 import useGetCoinState from '@/hooks/useGetCoinState'
 import { getSignedChangeRate } from '@/utils/coinUtil'
 import { getTextColor } from '@/utils/coinUtil'
 import Skeleton from 'react-loading-skeleton'
 
-export default function DataCell({ coinId }: { coinId: string }) {
+export default function DataCell({ coinId }: { coinId: CoinId }) {
   const { coinState } = useGetCoinState(coinId)
   return (
     <>

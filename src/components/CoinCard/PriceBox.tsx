@@ -1,12 +1,13 @@
 'use client'
 
+import { CoinId } from '@/atoms/coinsAtom'
 import useGetCoinState from '@/hooks/useGetCoinState'
 import { getTextColor } from '@/utils/coinUtil'
 import { useEffect, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
 
 interface IPriceBoxProps {
-  coinId: string
+  coinId: CoinId
 }
 
 export default function PriceBox({ coinId }: IPriceBoxProps) {

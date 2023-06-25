@@ -9,10 +9,10 @@ export interface ICoinState {
   lp?: number //저가
 }
 
-type coinId = 'btc' | 'eth' | 'etc' | 'ada' | 'xrp' | 'doge'
+export type CoinId = 'btc' | 'eth' | 'etc' | 'ada' | 'xrp' | 'doge'
 
 type ICoinStateObj = {
-  [key in coinId]: ICoinState
+  [key in CoinId]: ICoinState
 }
 
 const atomKey = {
@@ -40,10 +40,10 @@ export const coinStateObj = atom<ICoinStateObj>({
   },
 })
 
-export const getCoinState = selectorFamily<ICoinState, coinId>({
+export const getCoinState = selectorFamily<ICoinState, CoinId>({
   key: atomKey.coinSelector,
   get:
-    (coinId: coinId) =>
+    (coinId: CoinId) =>
     ({ get }) => {
       const _coinStateObj = get(coinStateObj)
       return _coinStateObj[coinId]
