@@ -5,7 +5,7 @@ import Refresh from '@/components/icons/Refresh'
 import LabelRow from '@/components/TradingForm/LabelRow'
 import TabBar from '@/components/TradingForm/TabBar'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { decreaseColor, increaseColor, mainFontColor } from '@/constants/color'
 import { useSearchParams } from 'next/navigation'
@@ -56,7 +56,7 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     possiblePrice: 0, //주문가능금액
   })
   const { data: coinTicker } = useGetCoinTicker(selectedCoin.codes || '')
-  const { data: userAmount } = useGetUserAmount()
+  const { data: userAmount, isSuccess } = useGetUserAmount()
   const [defaultValues, setDefaultValues] = useState({
     price: '0',
     count: '0',
@@ -84,6 +84,12 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     }
   }, [coinTicker])
 
+  useEffect(() => {
+    if (userAmount) {
+      setFormData((prev) => ({ ...prev, possiblePrice: userAmount.amount }))
+    }
+  }, [userAmount])
+
   //초기화
   const init = () => {
     setActiveMenu(menu[0])
@@ -101,21 +107,22 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     setFormData({ ...formData, [key]: value })
   }
 
-  const handleOnChange = (
-    name: keyof IFormInputData,
-    thousandSeparatorFlag: boolean
-  ) => {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.target
-      const preventZeroStartValue = preventZeroStart(value)
-      setValue(
-        name,
-        thousandSeparatorFlag
-          ? thousandSeparator(preventZeroStartValue)
-          : preventZeroStartValue
-      )
-    }
-  }
+  const handleOnChange = useCallback(
+    (name: keyof IFormInputData, thousandSeparatorFlag: boolean) => {
+      return (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target
+        const preventZeroStartValue = preventZeroStart(value)
+        setValue(
+          name,
+          thousandSeparatorFlag
+            ? thousandSeparator(preventZeroStartValue)
+            : preventZeroStartValue
+        )
+      }
+    },
+    []
+  )
+
   return (
     <article className="max-w-360 mt-20">
       <TabBar
