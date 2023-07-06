@@ -32,7 +32,7 @@ export default function TabBar({
     if (key === 'sell') {
       return 'bg-decrease-color'
     }
-    return ''
+    return `bg-[#333]`
   }
   return (
     <header className="h-45">
