@@ -123,6 +123,13 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     []
   )
 
+  const handleCalcCountPercent = (percent: number) => {
+    if (userAmount?.amount) {
+      const _totalPrice = Math.floor(userAmount?.amount * (percent / 100))
+      setValue('totalPrice', _totalPrice.toLocaleString('ko-KR'))
+    }
+  }
+
   return (
     <article className="max-w-360 mt-20">
       <TabBar
@@ -182,7 +189,7 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
             onChange={handleOnChange('count', true)}
           />
         </LabelRow>
-        <CountPercent />
+        <CountPercent onClick={handleCalcCountPercent} />
         <LabelRow label="주문총액">
           <DefaultInput
             register={register('totalPrice')}
