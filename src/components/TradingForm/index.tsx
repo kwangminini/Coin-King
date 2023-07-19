@@ -13,7 +13,11 @@ import { ImageWidthDark } from '@/components/common/ImageWidthDark'
 import { ICoin } from '@/constants/coinList'
 import { useGetCoinTicker } from '@/queries/upbit'
 import DefaultInput from '@/components/common/Input/DefaultInput'
-import { preventZeroStart, thousandSeparator } from '@/utils/stringUtil'
+import {
+  preventZeroStart,
+  thousandSeparator,
+  unComma,
+} from '@/utils/stringUtil'
 import { useGetUserAmount } from '@/queries/userAmount'
 import CountPercent from '@/components/TradingForm/CountPercent'
 
@@ -62,9 +66,10 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     count: '0',
     totalPrice: '0',
   })
-  const { handleSubmit, reset, register, setValue } = useForm<IFormInputData>({
-    defaultValues,
-  })
+  const { handleSubmit, reset, register, setValue, getValues, getFieldState } =
+    useForm<IFormInputData>({
+      defaultValues,
+    })
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -122,11 +127,21 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     },
     []
   )
-
+  //주문수량 퍼센트에 따른 주문수량, 주문총액 설정
   const handleCalcCountPercent = (percent: number) => {
     if (userAmount?.amount) {
       const _totalPrice = Math.floor(userAmount?.amount * (percent / 100))
-      setValue('totalPrice', _totalPrice.toLocaleString('ko-KR'))
+      handleSetTotalPrice(_totalPrice)
+      handleSetCount(_totalPrice)
+    }
+    //주문총액 설정
+    function handleSetTotalPrice(totalPrice: number) {
+      setValue('totalPrice', totalPrice.toLocaleString('ko-KR'))
+    }
+    //주문수량 설정
+    function handleSetCount(totalPrice: number) {
+      const unCommaPrice = unComma(getValues('price'))
+      setValue('count', (totalPrice / Number(unCommaPrice)).toFixed(5))
     }
   }
 
