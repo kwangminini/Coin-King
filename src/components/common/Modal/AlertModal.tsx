@@ -14,7 +14,7 @@ export default function AlertModal({ title, text }: IAlertModalProps) {
           {textItem}
         </p>
       ))}
-      <button className="bg-main-color text-white font-bold text-16 px-18 py-4 rounded">
+      <button className="bg-main-color text-white font-bold text-14 px-18 py-4 rounded">
         확인
       </button>
     </div>,
