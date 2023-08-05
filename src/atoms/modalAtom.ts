@@ -1,6 +1,10 @@
 import { atom } from 'recoil'
 
-const alertAtom = atom({
+interface IAlertAtom {
+  isShow: boolean
+  message: string
+}
+export const alertAtom = atom<IAlertAtom>({
   key: 'alertAtom',
   default: {
     isShow: false,
