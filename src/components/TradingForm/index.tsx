@@ -20,6 +20,9 @@ import {
 } from '@/utils/stringUtil'
 import { useGetUserAmount } from '@/queries/userAmount'
 import CountPercent from '@/components/TradingForm/CountPercent'
+import { useSetRecoilState } from 'recoil'
+import { alertAtom } from '@/atoms/modalAtom'
+import { tailwindColorObj } from '@/utils/colorUtil'
 
 interface IOrderOptions {
   key: string
@@ -66,6 +69,7 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     count: '0',
     totalPrice: '0',
   })
+  const setAlertModalAtom = useSetRecoilState(alertAtom)
   const { handleSubmit, reset, register, setValue, getValues, getFieldState } =
     useForm<IFormInputData>({
       defaultValues,
@@ -145,8 +149,15 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
     }
   }
 
+  const handleActiveColor = (menu: IMenu) => {
+    const menuKeyColorObj: { [key: string]: string } = {
+      buy: tailwindColorObj.increase,
+      sell: tailwindColorObj.decrease,
+    }
+    return menuKeyColorObj[menu.key]
+  }
   return (
-    <article className="max-w-360 mt-20">
+    <article className="max-w-360 mt-2">
       <TabBar
         activeMenu={activeMenu}
         handleActiveMenu={handleActiveMenu}
@@ -222,8 +233,16 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
             </button>
             <button
               type="submit"
-              className="w-full ml-16 flex items-center justify-center font-bold text-white text-sm rounded-sm"
-              style={{ backgroundColor: activeMenu.activeColor }}
+              className={`w-full ml-16 flex items-center justify-center font-bold text-white text-sm rounded-sm ${handleActiveColor(
+                activeMenu
+              )}`}
+              onClick={() =>
+                setAlertModalAtom({
+                  isShow: true,
+                  text: [`${activeMenu.value}가 완료되었습니다.`],
+                  title: activeMenu.value,
+                })
+              }
             >
               {activeMenu.value}
             </button>
