@@ -9,6 +9,7 @@ import ThemeContext from '@/context/ThemeContext'
 import ReactQueryContext from '@/context/ReactQueryContext'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import ModalContainer from '@/components/common/Modal/ModalContainer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -36,6 +37,7 @@ export default async function RootLayout({
                 <RecoilContext>
                   <WebsocketConnect />
                   {children}
+                  <ModalContainer />
                 </RecoilContext>
               </main>
             </AuthContext>
