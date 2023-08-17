@@ -64,11 +64,16 @@ export default function TradingForm({ selectedCoin }: ITradingFormProps) {
   })
   const { data: coinTicker } = useGetCoinTicker(selectedCoin.codes || '')
   const { data: userAmount, isSuccess } = useGetUserAmount()
-  const [defaultValues, setDefaultValues] = useState({
-    price: '0',
+  const defaultValues = {
+    price: thousandSeparator(String(coinTicker?.trade_price)),
     count: '0',
     totalPrice: '0',
-  })
+  }
+  // const [defaultValues, setDefaultValues] = useState({
+  //   price: thousandSeparator(String(coinTicker?.trade_price)),
+  //   count: '0',
+  //   totalPrice: '0',
+  // })
   const setAlertModalAtom = useSetRecoilState(alertAtom)
   const { handleSubmit, reset, register, setValue, getValues, getFieldState } =
     useForm<IFormInputData>({
