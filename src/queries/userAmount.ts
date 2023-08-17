@@ -1,4 +1,4 @@
-import { getUserAmount } from '@/api/userAmount'
+import { getUserAmount } from '@/api/user/userAmount'
 import { useSession } from 'next-auth/react'
 import { useQuery } from 'react-query'
 
